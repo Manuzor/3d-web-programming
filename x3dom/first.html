@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>My first X3DOM page</title>
+    <link rel="stylesheet" type="text/css"
+          href="http://www.x3dom.org/download/x3dom.css">
+    </link>
+    <script type="text/javascript"
+            src="http://www.x3dom.org/download/x3dom.js">
+    </script>
+    <script type="text/javascript">
+      var inc = "u";
+      var dec = "d";
+      var x = 0;
+      var y = 1;
+      var z = 2;
+
+      document.getElementById("body").onkeydown = function(event)
+      {
+        var key = String.fromCharCode(event.keyCode);
+        if (key == "W") {
+          alert("W!");
+        }
+      }
+
+      function translateBall(dir, axis)
+      {
+        var ball = document.getElementById('ball');
+        var currentTrans = ball.getAttribute('translation');
+        var splits = currentTrans.split(" ");
+        var theInt = parseInt(splits[axis]);
+        if (dir == inc) {
+          theInt += 1;
+        }
+        else
+        {
+          theInt -= 1;
+        }
+        splits[axis] = theInt.toString();
+
+        ball.setAttribute('translation', splits.join(" "));
+      }
+    </script>
+  </head>
+  <body id="body">
+    <h1>My X3DOM world</h1>
+    <p>
+      This is my first html page with some 3d objects.
+    </p>
+    <div>
+      <div>
+        <input type="button" value="y++" onclick="translateBall(inc, y)"/>
+        <input type="button" value="y--" onclick="translateBall(dec, y)"/>
+      </div>
+      <div>
+        <input type="button" value="x++" onclick="translateBall(inc, x)"/>
+        <input type="button" value="x--" onclick="translateBall(dec, x)"/>
+      </div>
+      <div>
+        <input type="button" value="z++" onclick="translateBall(inc, z)"/>
+        <input type="button" value="z--" onclick="translateBall(dec, z)"/>
+      </div>
+    </div>
+
+
+<X3D xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" xsd:noNamespaceSchemaLocation="http://www.web3d.org/specifications/x3d-3.0.xsd" version="3.0" profile="Immersive">
+  <Scene>
+    <Transform id='player' translation="-2 0 0">
+      <Shape onclick="translateBall(dec)">
+        <Appearance>
+        <Material diffuseColor="1 2 3"></Material>
+        </Appearance>
+        <Cone></Cone>
+      </Shape>
+    </Transform>
+    <Transform id='ball' translation="2 0 0">
+      <Shape>
+        <Appearance>
+          <Material diffuseColor="5 2 1"></Material>
+        </Appearance>
+        <Sphere></Sphere>
+      </Shape>
+    </Transform>
+    <TimeSensor id="clock_ball"></TimeSensor>
+    <PositionInterpolator id="pi_ball" key="0 0.5 1" keyValue="2 0 0, 2 5 0, 2 0 0"></PositionInterpolator>
+    <ROUTE fromNode="clock_ball" fromField="faction_changed" toNode="pi_ball" toField="set_fraction"></ROUTE>
+    <ROUTE fromNode="pi_ball" fromField="value_changed" toNode="ball" toField="set_translation"></ROUTE>
+  </Scene>
+</X3D>
+
+
+  </body>
+</html>

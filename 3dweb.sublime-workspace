@@ -1,0 +1,466 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"trans",
+				"transform"
+			],
+			[
+				"usa",
+				"usage-and-exit"
+			],
+			[
+				"cl",
+				"cleanup"
+			],
+			[
+				"cleanu",
+				"cleanup-all"
+			],
+			[
+				"clean",
+				"cleanup-all"
+			],
+			[
+				"def",
+				"defaultBackup"
+			],
+			[
+				"cust",
+				"customBackupFile"
+			],
+			[
+				"inputSubs",
+				"fig:input_subsystem"
+			],
+			[
+				"msb",
+				"msbuildPath"
+			],
+			[
+				"sec",
+				"sec	Section"
+			],
+			[
+				"c",
+				"cha	Chapter"
+			],
+			[
+				"cha",
+				"chapter"
+			],
+			[
+				"docu",
+				"document"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Run in Chrome.sublime-build",
+			"settings":
+			{
+				"buffer_size": 90,
+				"line_ending": "Windows",
+				"name": "untitled.sublime-build"
+			}
+		},
+		{
+			"file": "three/first-threejs.html",
+			"settings":
+			{
+				"buffer_size": 906,
+				"line_ending": "CR"
+			}
+		}
+	],
+	"build_system": "Packages/User/Run in Chrome.sublime-build",
+	"command_palette":
+	{
+		"height": 311.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: discover",
+				"Package Control: Discover Packages"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/Projects/3dweb/three/car/models/sport_car.dae",
+		"/D/Projects/3dweb/three/car/textures.txt",
+		"/D/Projects/3dweb/three/car/doc.kml",
+		"//192.168.111.9/mm198/www/index.html",
+		"/D/Projects/3dweb/three/first-threejs.html.lnk",
+		"/D/Projects/3dweb/three/first-threejs.html",
+		"/D/Projects/3dweb/3dweb.sublime-project",
+		"/D/Projects/3dweb/first-threejs.html",
+		"/D/Projects/3dweb/3dweb.sublime-workspace",
+		"/D/Temp/3dweb/first.html",
+		"/D/Temp/3dweb/first.x3d",
+		"/D/Temp/3dweb/first.xhtml",
+		"/C/Users/Manu/Desktop/test/a/keep",
+		"/C/Users/Manu/Desktop/test/a/remove",
+		"/C/Users/Manu/Desktop/test/a/file",
+		"/C/Users/Manu/Projects/mash/cleanup_all.bat",
+		"/C/Users/Manu/CloudServices/Dropbox/Private/Studium/Ambrosia/Planning/heads-meeting-2_notes.txt",
+		"/C/Users/Manu/CloudServices/Dropbox/Dafuq/ToDo/manu-and-maria_series.txt",
+		"/C/cygwin/etc/fstab",
+		"/C/Users/Manu/CloudServices/Dropbox/Private/Studium/Ambrosia/Planning/ambrosia-repo-conversion-to-git.txt",
+		"//MOTHERBRAIN/Downloads JD/That '70s Show/tmp.sh",
+		"//MOTHERBRAIN/Downloads JD/That '70s Show/That '70s Show - Season 1.m3u",
+		"//MOTHERBRAIN/Downloads JD/That '70s Show/That '70s Show - Season 1",
+		"/C/Users/Manu/CloudServices/Dropbox/Dafuq/ToDo/manu_lp.txt",
+		"/C/Users/Manu/CloudServices/Dropbox/Dafuq/ToDo/maria_lp.txt",
+		"/C/Users/Manu/.vimperatorrc",
+		"/G/Portable/KeePass2.22/password-safes/synchronize.bat",
+		"/G/Settings/VisualAssistX/README.txt",
+		"/G/Setups/Cygwin/info.txt",
+		"/C/Users/Manu/Projects/system-engineering-hdm/ruby-deployment-app/test/unit/user_test.rb",
+		"/C/Users/Manu/Projects/system-engineering-hdm/ruby-deployment-app/db/schema.rb",
+		"/C/Users/Manu/Projects/system-engineering-hdm/ruby-deployment-app/test/fixtures/users.yml",
+		"/C/Users/Manu/Projects/system-engineering-hdm/ruby-deployment-app/test/test_helper.rb",
+		"/C/Users/Manu/temp/rails/my_test_application/test/unit/post_test.rb",
+		"/C/Users/Manu/Projects/system-engineering-hdm/ruby-deployment-app/Gemfile",
+		"/C/Users/Manu/Desktop/machine-learning_exercise.txt",
+		"/C/Users/Manu/Desktop/machine-learning_spam.py",
+		"/C/Users/Manu/Desktop/machine-learning_checker-3-4.txt",
+		"/C/Users/Manu/.ssh/superbrain_rsa.pub",
+		"/C/Users/Manu/.bash_aliases",
+		"/C/Users/Manu/.inputrc",
+		"/C/Users/Manu/_viminfo",
+		"/C/Users/Manu/vimperator/info/default/macros",
+		"/C/Users/Manu/Desktop/gamesday-computers.txt",
+		"/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/Test/testCommand.py",
+		"/C/Users/Manu/CloudServices/Dropbox/Private/Studium/Ambrosia/Planning/ambrosia-team-list.txt",
+		"/C/Users/Manu/path.txt",
+		"/C/Users/Manu/Desktop/.gitignore",
+		"/C/Users/Manu/.bashrc",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/todo.sublime-project",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/todo.sublime-workspace",
+		"/C/Users/Manu/Cloud Services/Dropbox/Private/Studium/Ambrosia/Planning/ambrosia-repo-conversion-to-git.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria_series.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria_movies.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria_games.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria_anime.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria-and-manu_misc.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu_misc.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu_lp.txt",
+		"/D/Projects/cli/documents/version",
+		"/D/Projects/cli/.gitignore",
+		"/C/Users/Manu/Desktop/test.bat",
+		"/C/Users/Manu/Cloud Services/Dropbox/Programs/Portable/Path/ReadMe.txt",
+		"/D/Projects/PathManager/update-version.sh",
+		"/C/Users/Manu/Cloud Services/Dropbox/Programs/Portable/Path/path-export.bat",
+		"/C/Users/Manu/Cloud Services/Dropbox/Programs/Portable/Path/path-import.bat",
+		"/D/Projects/PathManager/documents/version",
+		"/C/Users/Manu/Cloud Services/Dropbox/Private/ambrosia-3_heads-meeting-1_notes.txt",
+		"/C/Users/Manu/Desktop/heads-meeting-1_notes.txt",
+		"/D/Projects/Ambrosia/ambrosia-prg-td/build-server.txt",
+		"/C/Users/Manu/AppData/Local/Temp/7zO96A8.tmp/credentials.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_lp.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-lp.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-series.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-movies.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-games.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-anime.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria-lp.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_movies.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_games.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_anime.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_series.txt",
+		"/C/Users/Manu/Desktop/Old Desktop/DrEcksack/bin/Content/settings/controls.xml",
+		"/D/Projects/UnitTestFramework/documents/version",
+		"/D/Projects/UnitTestFramework/update-version.sh",
+		"/D/Projects/UnitTestFramework/update_version.bat",
+		"/D/Projects/UnitTestFramework/documents/version.txt",
+		"/D/Projects/UnitTestFramework/documents/ReadMe.txt",
+		"/C/Users/Manu/Cloud Services/Dropbox/Nachhilfe/Nadine/Mathematik/Lehrplan.txt",
+		"/D/Projects/Memo/Documents/UnitTests/ReadMe.txt",
+		"/C/Users/Manu/Desktop/path.txt",
+		"/D/TES4Edit_3_0_30_EXPERIMENTAL-11536-3-0-30EXP/TES5Edit Readme.txt",
+		"/C/Users/Manu/AppData/Local/Temp/7zO2A12.tmp/readme_en.txt",
+		"/C/Users/Manu/AppData/Local/Temp/7zOE5B.tmp/readme_en.txt",
+		"/D/Steam/steamapps/common/Skyrim/FixForBrightObjects.txt",
+		"/D/Steam/steamapps/common/Skyrim/enbseries.ini",
+		"/D/Steam/steamapps/common/Skyrim/ControlMap_Custom.txt",
+		"/D/Games/Nexus Mod Manager/Skyrim/Mods/ReadMe/Temp/ACE - ReadMe.txt",
+		"/C/Users/Manu/AppData/Local/Temp/srcEDB2.txt",
+		"/D/Games/Nexus Mod Manager/Skyrim/Mods/ReadMe/Temp/Readme - SkyUI.txt",
+		"/D/Projects/ConcEngine/documents/ReadMe.txt",
+		"/D/Projects/ConcEngine/temp/ConcEngine/Debug_Win32/ConcEngine.i",
+		"/D/Projects/Thesis/Documents/planning_TheLastDays.txt",
+		"/D/Projects/Thesis/Paper/chapters/basics.tex",
+		"/D/Projects/Thesis/Paper/chapters/conclusion.tex",
+		"/D/Projects/Thesis/Paper/misc/abstract.tex",
+		"/D/Projects/Thesis/Paper/misc/titlepage.tex",
+		"/D/Projects/Thesis/Paper/misc/acknowledgements.tex",
+		"/D/Projects/Thesis/Paper/codeSamples/concurrentCollisionDetectionJob.cpp",
+		"/D/Projects/Thesis/Paper/chapters/ambrosia.tex",
+		"/D/Projects/Thesis/Paper/appendices/ambrosia.tex",
+		"/D/Projects/Thesis/Paper/backmatter.tex",
+		"/D/Projects/Thesis/Paper/chapters/threading.tex",
+		"/D/Projects/Thesis/Paper/chapters/introduction.tex",
+		"/D/Projects/Thesis/Paper/main.tex",
+		"/D/Projects/Thesis/Paper/codeSamples/concurrentCollisionDetection.cpp",
+		"/D/Projects/Thesis/Paper/misc/digitalVersion.tex",
+		"/D/Projects/Thesis/Paper/thesis.sty",
+		"/D/Projects/Thesis/Paper/codeSamples/concurrentDesign_after.cpp",
+		"/D/Projects/Thesis/Paper/codeSamples/concurrentDesign_before.cpp",
+		"/D/Projects/Thesis/Paper/codeSamples/mainloop.cpp",
+		"/D/Projects/Thesis/Paper/misc/todolist.tex",
+		"/D/Projects/Thesis/Paper/codeSamples/concurrentSoftwareDesign_0.cpp",
+		"/D/Projects/Thesis/Paper/codeSamples/concurrentSoftwareDesign_1.cpp",
+		"/D/Projects/Thesis/Paper/codeSamples/inputSubsystem_threadProc.cpp",
+		"/D/Projects/Thesis/Paper/codeSamples/executableObjectThread.cpp",
+		"/D/Projects/Thesis/Paper/codeSamples/typedef_inputSubsystemThread.cpp",
+		"/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"D:\\Projects\\Thesis\\Paper"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			";",
+			"arr",
+			"parse-for-help",
+			"parse-for-verbose",
+			"arr",
+			"args-to-arr",
+			".gitignore",
+			"alias ls=",
+			"-prg",
+			"arg",
+			"python",
+			"4.1",
+			"Black",
+			"job",
+			"karate",
+			"singleton",
+			"player character",
+			"concurrentCollisionDetection",
+			"concurrentCollisionDetectionJob",
+			"concurrent_software_design",
+			"writes it into the\\",
+			"writes into the \\lst",
+			"todo",
+			"prosess",
+			"ISO",
+			"lstinline",
+			"loop",
+			"typedef_loggingThread",
+			"windows",
+			"lstinputlisting",
+			"(?smix)\\\\lstinputlisting\\[.*?\\]\\{codeSamples/",
+			"\\\\lstinputlisting\\[(*.|\\r*\\n*)*?\\]\\{codeSamples/",
+			"\\\\lstinputlisting\\[.*?\\]\\{codeSamples/",
+			"lstinputlisting",
+			"\\codeSample",
+			"\\\\codeSample\\{(.*?)\\}",
+			"\\codeSample",
+			"::Ogre",
+			"\\includegraphics",
+			"\\image ",
+			"\\image",
+			"\\\\image\\{(.*?)\\}",
+			"todo",
+			"input-buffer",
+			"todo",
+			"enginePath",
+			"ctrl+b",
+			"alt+down",
+			"alt+up"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			";\\n",
+			"directories",
+			"dirs",
+			"parse-arg-help",
+			"parse-arg-verbose",
+			"parse-for-help",
+			"$keep",
+			"-eng",
+			"customPathFile",
+			"\\\\codeSample \\1",
+			"Ogre",
+			"",
+			"\\\\image \\1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Run in Chrome.sublime-build",
+					"settings":
+					{
+						"buffer_size": 90,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "three/first-threejs.html",
+					"settings":
+					{
+						"buffer_size": 906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								860,
+								860
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 142.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 153.0
+	},
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/C/Users/Manu/CloudServices/Dropbox/Dafuq/ToDo/todo.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 194.0,
+	"status_bar_visible": true
+}

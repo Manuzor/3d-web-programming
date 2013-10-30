@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"path": "./c3dl"
+		},
+		{
+			"path": "./x3dom"
+		},
+		{
+			"path": "./three"
+		}
+	]
+}
