@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"pro",
+				"promptChar"
+			],
+			[
 				"trans",
 				"transform"
 			],
@@ -60,20 +64,28 @@
 	"buffers":
 	[
 		{
-			"file": "/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Run in Chrome.sublime-build",
+			"file": "source/c3dl/assignment/main.js",
 			"settings":
 			{
-				"buffer_size": 90,
+				"buffer_size": 2087,
 				"line_ending": "Windows",
-				"name": "untitled.sublime-build"
+				"name": "// Tutorial 2: the javascript"
 			}
 		},
 		{
-			"file": "three/first-threejs.html",
+			"file": "source/c3dl/assignment/index.html",
 			"settings":
 			{
-				"buffer_size": 906,
-				"line_ending": "CR"
+				"buffer_size": 431,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/models/josy/josy.dae",
+			"settings":
+			{
+				"buffer_size": 237022,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -109,12 +121,60 @@
 	},
 	"file_history":
 	[
+		"/D/Projects/3d-web-programming/assets/models/josy/josy.dae",
+		"/D/Projects/3d-web-programming/source/three/car/index.html",
+		"/D/Projects/3d-web-programming/source/three/car/main.js",
+		"/D/Projects/3d-web-programming/source/three/examples/cube.html",
+		"/D/Projects/3d-web-programming/3dweb/x3dom/first.x3d",
+		"/D/Projects/3d-web-programming/3dweb/x3dom/first.html",
+		"/C/Users/Manu/.zshrc",
+		"/C/Users/Manu/Desktop/chipset-drivers/Help.txt",
+		"/C/Users/Manu/.oh-my-zsh/oh-my-zsh.sh",
+		"/C/Users/Manu/.oh-my-zsh/themes/af-magic-custom.zsh-theme",
+		"/C/Users/Manu/.oh-my-zsh/themes/af-magic.zsh-theme",
+		"/C/Users/Manu/.oh-my-zsh/themes/robbyrussell.zsh-theme",
+		"/C/cygwin64/home/Manu/.zshrc",
+		"/D/Projects/ambrosia/ambrosia-prg/AmbrosiaEngine/inc/AmbrosiaCamera.h",
+		"/C/Users/Manu/AppData/Local/Temp/7zO33E.tmp/fonts101.txt",
+		"/C/Users/Manu/.zprezto/runcoms/zlogout",
+		"/C/Users/Manu/.zprezto/runcoms/zlogin",
+		"/C/Users/Manu/.zprezto/runcoms/zshrc",
+		"/C/Users/Manu/.zprezto/runcoms/zprofile",
+		"/C/Users/Manu/.zprezto/runcoms/zshenv",
+		"/C/Users/Manu/.zprezto/runcoms/zpreztorc",
+		"/C/Users/Manu/bin/rapidee.bat",
+		"/C/cygwin64/home/Manu/Projects/system-engineering-hdm/ruby-deployment-app/README.md",
+		"/C/Users/Manu/bak/.zshrc",
+		"/D/share/vm/temp.txt",
+		"/C/cygwin64/Cygwin.bat",
+		"/C/Users/Manu/.zprezto/init.zsh",
+		"/C/Users/Manu/.zshenv",
+		"/C/Users/Manu/.zpreztorc",
+		"/C/cygwin64/home/Manu/.bash_history",
+		"/C/cygwin64/home/Manu/.bash_profile",
+		"/C/cygwin64/home/Manu/.bashrc",
+		"/C/Users/Manu/.profile",
+		"/C/Users/Manu/.inputrc",
+		"/C/Users/Manu/.bashrc",
+		"/C/cygwin64/home/Manu/.inputrc",
+		"/C/Users/Manu/.bash_profile",
+		"/C/cygwin64/home/Manu/.profile",
+		"/C/Users/Manu/.bash_history",
+		"/C/cygwin64/home/Manu/Projects/mash/README.md",
+		"/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Run in Chrome.sublime-build",
+		"/D/Projects/3dweb/three/first-threejs.html",
+		"/D/Projects/3dweb/three/examples/cube.html",
+		"/D/Projects/3dweb/three/car/main.js",
+		"/D/Projects/3dweb/three/car/index.html",
+		"/C/Users/Manu/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+		"/C/Users/Manu/Documents/WindowsPowerShell/defaults",
+		"/C/Users/Manu/Documents/Default.rdp",
+		"/C/Users/Manu/AppData/Local/Temp/7zO774D.tmp/Help.txt",
 		"/D/Projects/3dweb/three/car/models/sport_car.dae",
 		"/D/Projects/3dweb/three/car/textures.txt",
 		"/D/Projects/3dweb/three/car/doc.kml",
 		"//192.168.111.9/mm198/www/index.html",
 		"/D/Projects/3dweb/three/first-threejs.html.lnk",
-		"/D/Projects/3dweb/three/first-threejs.html",
 		"/D/Projects/3dweb/3dweb.sublime-project",
 		"/D/Projects/3dweb/first-threejs.html",
 		"/D/Projects/3dweb/3dweb.sublime-workspace",
@@ -149,7 +209,6 @@
 		"/C/Users/Manu/Desktop/machine-learning_checker-3-4.txt",
 		"/C/Users/Manu/.ssh/superbrain_rsa.pub",
 		"/C/Users/Manu/.bash_aliases",
-		"/C/Users/Manu/.inputrc",
 		"/C/Users/Manu/_viminfo",
 		"/C/Users/Manu/vimperator/info/default/macros",
 		"/C/Users/Manu/Desktop/gamesday-computers.txt",
@@ -157,7 +216,6 @@
 		"/C/Users/Manu/CloudServices/Dropbox/Private/Studium/Ambrosia/Planning/ambrosia-team-list.txt",
 		"/C/Users/Manu/path.txt",
 		"/C/Users/Manu/Desktop/.gitignore",
-		"/C/Users/Manu/.bashrc",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/todo.sublime-project",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/todo.sublime-workspace",
 		"/C/Users/Manu/Cloud Services/Dropbox/Private/Studium/Ambrosia/Planning/ambrosia-repo-conversion-to-git.txt",
@@ -190,53 +248,7 @@
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_movies.txt",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_games.txt",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_anime.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_series.txt",
-		"/C/Users/Manu/Desktop/Old Desktop/DrEcksack/bin/Content/settings/controls.xml",
-		"/D/Projects/UnitTestFramework/documents/version",
-		"/D/Projects/UnitTestFramework/update-version.sh",
-		"/D/Projects/UnitTestFramework/update_version.bat",
-		"/D/Projects/UnitTestFramework/documents/version.txt",
-		"/D/Projects/UnitTestFramework/documents/ReadMe.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Nachhilfe/Nadine/Mathematik/Lehrplan.txt",
-		"/D/Projects/Memo/Documents/UnitTests/ReadMe.txt",
-		"/C/Users/Manu/Desktop/path.txt",
-		"/D/TES4Edit_3_0_30_EXPERIMENTAL-11536-3-0-30EXP/TES5Edit Readme.txt",
-		"/C/Users/Manu/AppData/Local/Temp/7zO2A12.tmp/readme_en.txt",
-		"/C/Users/Manu/AppData/Local/Temp/7zOE5B.tmp/readme_en.txt",
-		"/D/Steam/steamapps/common/Skyrim/FixForBrightObjects.txt",
-		"/D/Steam/steamapps/common/Skyrim/enbseries.ini",
-		"/D/Steam/steamapps/common/Skyrim/ControlMap_Custom.txt",
-		"/D/Games/Nexus Mod Manager/Skyrim/Mods/ReadMe/Temp/ACE - ReadMe.txt",
-		"/C/Users/Manu/AppData/Local/Temp/srcEDB2.txt",
-		"/D/Games/Nexus Mod Manager/Skyrim/Mods/ReadMe/Temp/Readme - SkyUI.txt",
-		"/D/Projects/ConcEngine/documents/ReadMe.txt",
-		"/D/Projects/ConcEngine/temp/ConcEngine/Debug_Win32/ConcEngine.i",
-		"/D/Projects/Thesis/Documents/planning_TheLastDays.txt",
-		"/D/Projects/Thesis/Paper/chapters/basics.tex",
-		"/D/Projects/Thesis/Paper/chapters/conclusion.tex",
-		"/D/Projects/Thesis/Paper/misc/abstract.tex",
-		"/D/Projects/Thesis/Paper/misc/titlepage.tex",
-		"/D/Projects/Thesis/Paper/misc/acknowledgements.tex",
-		"/D/Projects/Thesis/Paper/codeSamples/concurrentCollisionDetectionJob.cpp",
-		"/D/Projects/Thesis/Paper/chapters/ambrosia.tex",
-		"/D/Projects/Thesis/Paper/appendices/ambrosia.tex",
-		"/D/Projects/Thesis/Paper/backmatter.tex",
-		"/D/Projects/Thesis/Paper/chapters/threading.tex",
-		"/D/Projects/Thesis/Paper/chapters/introduction.tex",
-		"/D/Projects/Thesis/Paper/main.tex",
-		"/D/Projects/Thesis/Paper/codeSamples/concurrentCollisionDetection.cpp",
-		"/D/Projects/Thesis/Paper/misc/digitalVersion.tex",
-		"/D/Projects/Thesis/Paper/thesis.sty",
-		"/D/Projects/Thesis/Paper/codeSamples/concurrentDesign_after.cpp",
-		"/D/Projects/Thesis/Paper/codeSamples/concurrentDesign_before.cpp",
-		"/D/Projects/Thesis/Paper/codeSamples/mainloop.cpp",
-		"/D/Projects/Thesis/Paper/misc/todolist.tex",
-		"/D/Projects/Thesis/Paper/codeSamples/concurrentSoftwareDesign_0.cpp",
-		"/D/Projects/Thesis/Paper/codeSamples/concurrentSoftwareDesign_1.cpp",
-		"/D/Projects/Thesis/Paper/codeSamples/inputSubsystem_threadProc.cpp",
-		"/D/Projects/Thesis/Paper/codeSamples/executableObjectThread.cpp",
-		"/D/Projects/Thesis/Paper/codeSamples/typedef_inputSubsystemThread.cpp",
-		"/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_series.txt"
 	],
 	"find":
 	{
@@ -255,6 +267,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"josy",
+			"duck",
+			"tex",
+			"here",
+			"6)",
+			" ",
+			"6)",
+			" (",
+			":",
 			";",
 			"arr",
 			"parse-for-help",
@@ -308,9 +329,17 @@
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
+			"josy.model",
+			"josy",
+			"6\\)",
+			"\\ ",
+			"6\\)",
+			" \\(",
+			"\\n:",
+			":\\n",
 			";\\n",
 			"directories",
 			"dirs",
@@ -334,28 +363,57 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/C/Users/Manu/AppData/Roaming/Sublime Text 2/Packages/User/Run in Chrome.sublime-build",
+					"file": "source/c3dl/assignment/main.js",
 					"settings":
 					{
-						"buffer_size": 90,
+						"buffer_size": 2087,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11,
-								11
+								1380,
+								1380
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+							"auto_name": "// Tutorial 2: the javascript",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "source/c3dl/assignment/index.html",
+					"settings":
+					{
+						"buffer_size": 431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								372,
+								372
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -364,28 +422,29 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "three/first-threejs.html",
+					"buffer": 2,
+					"file": "assets/models/josy/josy.dae",
 					"settings":
 					{
-						"buffer_size": 906,
+						"buffer_size": 237022,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								860,
-								860
+								733,
+								733
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4830.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

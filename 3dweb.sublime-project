@@ -2,13 +2,16 @@
 	"folders":
 	[
 		{
-			"path": "./c3dl"
+			"path": "lib"
 		},
 		{
-			"path": "./x3dom"
+			"path": "3dweb"
 		},
 		{
-			"path": "./three"
+			"path": "assets"
+		},
+		{
+			"path": "source"
 		}
 	]
 }
