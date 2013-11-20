@@ -267,6 +267,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"split-button-1",
+			".js",
+			"split-button-1",
 			"josy",
 			"duck",
 			"tex",
@@ -385,7 +388,8 @@
 						"settings":
 						{
 							"auto_name": "// Tutorial 2: the javascript",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 378.0,
@@ -433,8 +437,8 @@
 						"selection":
 						[
 							[
-								733,
-								733
+								12358,
+								12358
 							]
 						],
 						"settings":
