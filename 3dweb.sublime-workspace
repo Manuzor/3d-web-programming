@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"star",
+				"startCoords"
+			],
+			[
 				"pro",
 				"promptChar"
 			],
@@ -67,7 +75,7 @@
 			"file": "source/c3dl/assignment/main.js",
 			"settings":
 			{
-				"buffer_size": 2086,
+				"buffer_size": 7123,
 				"line_ending": "Windows",
 				"name": "// Tutorial 2: the javascript"
 			}
@@ -76,7 +84,7 @@
 			"file": "source/c3dl/assignment/index.html",
 			"settings":
 			{
-				"buffer_size": 431,
+				"buffer_size": 812,
 				"line_ending": "Windows"
 			}
 		}
@@ -84,9 +92,13 @@
 	"build_system": "Packages/User/Run in Chrome.sublime-build",
 	"command_palette":
 	{
-		"height": 311.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				":",
+				"Git: Blame"
+			],
 			[
 				"Package Control: ",
 				"Package Control: Install Package"
@@ -96,7 +108,7 @@
 				"Package Control: Discover Packages"
 			]
 		],
-		"width": 400.0
+		"width": 424.0
 	},
 	"console":
 	{
@@ -113,6 +125,8 @@
 	},
 	"file_history":
 	[
+		"/D/Projects/3d-web-programming/source/c3dl/assignment/main2.js",
+		"/C/cygwin64/d/Projects/3d-web-programming/.git/COMMIT_EDITMSG",
 		"/D/Projects/3d-web-programming/assets/models/josy/josy.dae",
 		"/D/Projects/3d-web-programming/source/three/car/index.html",
 		"/D/Projects/3d-web-programming/source/three/car/main.js",
@@ -238,9 +252,7 @@
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-anime.txt",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria-lp.txt",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_movies.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_games.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_anime.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_series.txt"
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_games.txt"
 	],
 	"find":
 	{
@@ -259,6 +271,22 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"duck.instances",
+			"instances",
+			"tutorial",
+			"y",
+			"duck.model",
+			"cam",
+			"call",
+			"scn",
+			"scene",
+			"yevtpos",
+			"xevtpos",
+			"calcRelativePosX",
+			"xevtpos",
+			"cam",
+			"duck",
+			"josy",
 			"split-button-1",
 			".js",
 			"split-button-1",
@@ -327,6 +355,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			"value",
+			"scene",
+			"calcRelativeMouseY",
+			"calcRelativeMouseX",
+			"duck",
+			"duck\nduck",
 			"josy.model",
 			"josy",
 			"6\\)",
@@ -358,7 +392,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -366,25 +400,25 @@
 					"file": "source/c3dl/assignment/main.js",
 					"settings":
 					{
-						"buffer_size": 2086,
+						"buffer_size": 7123,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								327,
-								327
+								1592,
+								1592
 							]
 						],
 						"settings":
 						{
 							"auto_name": "// Tutorial 2: the javascript",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 360.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -394,15 +428,15 @@
 					"file": "source/c3dl/assignment/index.html",
 					"settings":
 					{
-						"buffer_size": 431,
+						"buffer_size": 812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								372,
-								372
+								794,
+								794
 							]
 						],
 						"settings":

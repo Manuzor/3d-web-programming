@@ -1,11 +1,25 @@
 <html>
   <head>
-    <title>Canvas3D tutorial #2: A Simple Scene</title>
+    <title>3D Web application by Manuel Maier</title>
     <script type="application/javascript" src="../../../lib/c3dl/c3dapi.js" ></script>
     <script type="application/javascript" src="main.js"></script>
   </head>
   <body>
+    <div>
+      <table>
+        <tr>
+          <td>FPS</td>
+          <td id="fps">0.0</td>
+        </tr>
+      </table>
+    </div>
+    <div id="initializers">
+      <input id="numDucks" type="text" value="10">
+      <input type="button" value="Go!" onClick="go('mainCanvas');">
+    </div>
     <!-- Add a canvas element to the page. It is scripted by using its id -->
-    <canvas id="tutorial" style="border: 2px solid blue" width="500" height="500"></canvas>
+    <canvas id="mainCanvas" style="border: 2px solid blue" width="840" height="504"></canvas>
+    <div id="formations">Flock formation: </div>
+    <div id="buttons">Pick a duck: </div>
   </body>
 </html>
