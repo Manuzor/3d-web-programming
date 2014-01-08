@@ -1,73 +1,108 @@
-// Tutorial 2: the javascript
-// The models used need to be parsed before the page
-// render. This code will parse the model files
-// and when this is complete the parser will call the
-// main. The argument being passed - "tutorial" -
-// is the id of the canvas element on the html page.
-
-console.log("Loaded script source correctly.");
-
-var duck = { path : "../../../assets/models/duck/duck.dae" };
+duck = {
+    paths : {
+        model : "../../../assets/models/duck/duck.dae",
+        texture : "../../../assets/models/duck/duck.png"
+    }
+};
 
 c3dl.addMainCallBack(canvasMain, "tutorial");
-c3dl.addModel(duck.path);
+c3dl.addModel(duck.paths.model);
 
-// The program main
-function canvasMain(canvasName)
+var isDragging = false; //tracks or not the user is currently dragging the mouse
+var rotationStartCoords = [0,0]; //The mouse coordinates at the beginning of a rotation
+var SENSITIVITY = 0.7;
+
+//Called when the user releases the left mouse button.
+//Records that the user is no longer dragging the mouse
+function mouseUp(evt)
 {
-	// Create new c3dl.Scene addObjectToScene
-	scn = new c3dl.Scene();
-	scn.setCanvasTag(canvasName);
+    if(evt.which == 1)
+    {
+        isDragging = false;
+    }
+}
 
-	// Create GL context
-	renderer = new c3dl.WebGL();
-	renderer.createRenderer(this);
+//Called when the user presses the left mouse button.
+//Records that the user may start to drag the mouse, along with the current X & Y
+// coordinates of the mouse.
+function mouseDown(evt)
+{
+    if(evt.which == 1)
+    {
+        isDragging = true;
+        rotationStartCoords[0] = xevtpos(evt);
+        rotationStartCoords[1] = yevtpos(evt);
+    }
+}
 
-	// Attach renderer to the scene
-	scn.setRenderer(renderer);
-	scn.init(canvasName);
+//Called when the mouse moves
+//This function will only do anything when the user is currently holding
+// the left mouse button.  It will determine how far the cursor has moved
+// since the last update and will pitch and yaw the camera based on that
+// amount and the sensitivity variable.
+function mouseMove(evt)
+{
+    if(isDragging == true)
+    {
+        var cam = scn.getCamera();
+        var x = xevtpos(evt);
+        var y = yevtpos(evt);
 
-	//the isReady() function tests whether or not a renderer
-	//is attached to a scene.  If the renderer failed to
-	//initialize this will return false but only after you
-	//try to attach it to a scene.
-	if(renderer.isReady())
-	{
-		// Create a Collada object that
-		// will contain a imported
-		// model of something to put
-		// in the scene.
-		duck.model = new c3dl.Collada();
+        // how much was the cursor moved compared to last time
+        // this function was called?
+        var deltaX = x - rotationStartCoords[0];
+                var deltaY = y - rotationStartCoords[1];
 
-		// If the path is already parsed
-		// (as it is in this case)
-		// then the model is automatically retrieved
-		// from a collada manager.
-		duck.model.init(duck.path);
+        cam.yaw(-deltaX * SENSITIVITY);
+        cam.pitch(deltaY * SENSITIVITY);
 
-		//duck.model.scale([10, 10, 10]);
+        // now that the camera was updated, reset where the
+        // rotation will start for the next time this function is 
+        // called.
+        rotationStartCoords = [x,y];
+    }
+}
 
-		// Give the duck.model a bit of a spin on y
-		//duck.model.setAngularVel(new Array(0.0, -0.001, 0.0));
+//Calculates the current X coordinate of the mouse in the client window
+function xevtpos(evt)
+{
+    return 2 * (evt.clientX / evt.target.width) - 1;
+}
 
-		// Add the object to the scene
-		scn.addObjectToScene(duck.model);
+//Calculates the current Y coordinate of the mouse in the client window
+function yevtpos(evt)
+{
+    return 2 * (evt.clientY / evt.target.height) - 1;
+}
 
-		// Create a camera
-		var cam = new c3dl.FreeCamera();
+function canvasMain(canvasName){
 
-		// Place the camera.
-		cam.setPosition(new Array(200.0, 300.0, 500.0));
+    scn = new c3dl.Scene();
+    scn.setCanvasTag(canvasName);
 
-		// Point the camera.
-		// Here it is pointed at the same location as
-		// the duck.model so the duck.model will appear centered.
-		cam.setLookAtPoint(new Array(0.0, 0.0, 0.0));
+    renderer = new c3dl.WebGL();
+    renderer.createRenderer(this);
 
-		// Add the camera to the scene
-		scn.setCamera(cam);
+    scn.setRenderer(renderer);
+    scn.init(canvasName);
 
-		// Start the scene
-		scn.startScene();
-	}
+    if(renderer.isReady() )
+    {
+        duck.model = new c3dl.Collada();
+        duck.model.init(duck.paths.model);
+        duck.model.setTexture(duck.paths.texture);
+        duck.model.yaw(Math.PI * 0.5); //rotate the duck.model to look up the Z axis
+        scn.addObjectToScene(duck.model);
+
+        var cam = new c3dl.OrbitCamera();
+        cam.setFarthestDistance(1000);
+        cam.setClosestDistance(60);
+        cam.setOrbitPoint([0.0, 0.0, 0.0]);
+        cam.setDistance(400);
+        scn.setCamera(cam);
+
+        scn.setMouseCallback(mouseUp, mouseDown, mouseMove);
+
+        scn.startScene();
+    }
 }
