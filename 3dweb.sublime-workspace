@@ -67,7 +67,7 @@
 			"file": "source/c3dl/assignment/main.js",
 			"settings":
 			{
-				"buffer_size": 2087,
+				"buffer_size": 2086,
 				"line_ending": "Windows",
 				"name": "// Tutorial 2: the javascript"
 			}
@@ -78,14 +78,6 @@
 			{
 				"buffer_size": 431,
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "assets/models/josy/josy.dae",
-			"settings":
-			{
-				"buffer_size": 237022,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -366,7 +358,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -374,15 +366,15 @@
 					"file": "source/c3dl/assignment/main.js",
 					"settings":
 					{
-						"buffer_size": 2087,
+						"buffer_size": 2086,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1380,
-								1380
+								327,
+								327
 							]
 						],
 						"settings":
@@ -392,7 +384,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 378.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -421,34 +413,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "assets/models/josy/josy.dae",
-					"settings":
-					{
-						"buffer_size": 237022,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12358,
-								12358
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4830.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

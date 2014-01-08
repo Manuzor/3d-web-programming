@@ -7,14 +7,14 @@
 
 console.log("Loaded script source correctly.");
 
-var josy = { path : "../../../assets/models/josy/josy.dae" };
+var duck = { path : "../../../assets/models/duck/duck.dae" };
 
 c3dl.addMainCallBack(canvasMain, "tutorial");
-c3dl.addModel(josy.path);
+c3dl.addModel(duck.path);
 
 // The program main
 function canvasMain(canvasName)
-{	
+{
 	// Create new c3dl.Scene addObjectToScene
 	scn = new c3dl.Scene();
 	scn.setCanvasTag(canvasName);
@@ -37,35 +37,31 @@ function canvasMain(canvasName)
 		// will contain a imported
 		// model of something to put
 		// in the scene.
-		josy.model = new c3dl.Collada();
+		duck.model = new c3dl.Collada();
 
 		// If the path is already parsed
 		// (as it is in this case)
 		// then the model is automatically retrieved
 		// from a collada manager.
-		josy.model.init(josy.path);
+		duck.model.init(duck.path);
 
-		josy.model.scale([10, 10, 10]);
+		//duck.model.scale([10, 10, 10]);
 
-		// Give the josy.model a bit of a spin on y
-		josy.model.setAngularVel(new Array(0.0, -0.001, 0.0));
+		// Give the duck.model a bit of a spin on y
+		//duck.model.setAngularVel(new Array(0.0, -0.001, 0.0));
 
 		// Add the object to the scene
-		scn.addObjectToScene(josy.model);
+		scn.addObjectToScene(duck.model);
 
 		// Create a camera
 		var cam = new c3dl.FreeCamera();
 
 		// Place the camera.
-		// WebGL uses a right handed co-ordinate system.
-		// move 200 to the right
-		// move 300 up
-		// move 500 units out
 		cam.setPosition(new Array(200.0, 300.0, 500.0));
 
 		// Point the camera.
 		// Here it is pointed at the same location as
-		// the josy.model so the josy.model will appear centered.
+		// the duck.model so the duck.model will appear centered.
 		cam.setLookAtPoint(new Array(0.0, 0.0, 0.0));
 
 		// Add the camera to the scene
