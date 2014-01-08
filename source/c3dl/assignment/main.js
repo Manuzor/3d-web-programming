@@ -9,25 +9,33 @@ duck = {
     width : 75,
     height : 100,
     formationPaddingFactor : 2.5,
+    pickedCallback : null,
 
     // methods
     setPicked : function(d){
-        if ( d == null ) {
-            return;
-        };
-        if ( duck.activelyRotating == null ) {
-            duck.activelyRotating = d;
-            duck.activelyRotating.setAngularVel(duck.angularVelOnClick);
-            return;
-        };
+        function helper(d)
+        {
+            if ( d == null ) {
+                return;
+            };
+            if ( duck.activelyRotating == null ) {
+                duck.activelyRotating = d;
+                duck.activelyRotating.setAngularVel(duck.angularVelOnClick);
+                return;
+            };
 
-        duck.activelyRotating.setAngularVel([0, 0, 0]);
+            duck.activelyRotating.setAngularVel([0, 0, 0]);
 
-        if (d != duck.activelyRotating) {
-            duck.activelyRotating = d;
-            duck.activelyRotating.setAngularVel(duck.angularVelOnClick);
-        } else {
-            duck.activelyRotating = null;
+            if (d != duck.activelyRotating) {
+                duck.activelyRotating = d;
+                duck.activelyRotating.setAngularVel(duck.angularVelOnClick);
+            } else {
+                duck.activelyRotating = null;
+            };
+        }
+        helper(d);
+        if (duck.pickedCallback != null) {
+            duck.pickedCallback({ duck : d, picked : d != null });
         };
     },
     getFormationWidth : function(){
@@ -36,21 +44,7 @@ duck = {
 };
 
 var formations = {
-    line_right : function(){
-        for (var i = 0; i < duck.instances.length; i++) {
-            console.log("before #" + i);
-            var instance = duck.instances[i];
-            instance.setPosition([ -duck.width * i * duck.formationPaddingFactor, 0, 0 ]);
-            console.log("after #" + i);
-        };
-    },
-    line_left : function(){
-        for (var i = 0; i < duck.instances.length; i++) {
-            var instance = duck.instances[i];
-            instance.setPosition([ duck.width * i * duck.formationPaddingFactor, 0, 0 ]);
-        };
-    },
-    line_centered : function(){
+    line : function(){
         var width = 0;
         var sign = -1;
         for (var i = 0; i < duck.instances.length; i++, sign = -sign) {
@@ -59,10 +53,9 @@ var formations = {
             instance.setPosition(newPos);
 
             if ( sign < 0 ) {
-                width += duck.getFormationWidth() * sign;
+                width += duck.getFormationWidth();
             };
         };
-
     },
     square : function(){
         var rows = columns = Math.round(Math.sqrt(duck.instances.length));
@@ -70,32 +63,73 @@ var formations = {
             ++rows;
         };
 
-        console.log("[" + columns + "x" + rows + "]")
+        var sign = -1;
+        var width = 0;
         var i = 0;
         for (var row = 0; row < rows && i < duck.instances.length; ++row) {
-            for (var col = 0; col < columns && i < duck.instances.length; ++col, ++i) {
+            for (var col = 0; col < columns && i < duck.instances.length; ++col, ++i, sign = -sign) {
                 var instance = duck.instances[ i ];
-                var newPos = [ col * duck.getFormationWidth(), 0, row * duck.getFormationWidth() ];
-                console.log("duck #" + i + "'s new position: " + newPos);
+                var newPos = [ sign * width, 0, row * duck.getFormationWidth() ];
+                ("duck #" + i + "'s new position: " + newPos);
                 instance.setPosition(newPos);
+                if (sign < 0) {
+                    width += duck.getFormationWidth();
+                };
             };
+            sign = -1;
+            width = 0;
+        };
+    },
+    rectangle : function(){
+        var rows = columns = Math.round(Math.sqrt(duck.instances.length));
+        if (rows * columns < duck.instances.length) {
+            ++rows;
+        };
+        // Make it more rectangley
+        if (rows > columns) {
+            var temp = rows;
+            rows = columns;
+            columns = temp;
+        };
+
+        var sign = -1;
+        var width = 0;
+        var i = 0;
+        for (var row = 0; row < rows && i < duck.instances.length; ++row) {
+            for (var col = 0; col < columns && i < duck.instances.length; ++col, ++i, sign = -sign) {
+                var instance = duck.instances[ i ];
+                var newPos = [ sign * width, 0, row * duck.getFormationWidth() * 0.9 ];
+                instance.setPosition(newPos);
+                if (sign < 0) {
+                    width += duck.getFormationWidth() * 1.6;
+                };
+            };
+            sign = -1;
+            width = 0;
         };
     },
     wedge : function(){
-        var maxDucksPerRow = 2;
-        var currentDucksInRow = 1;
+
+        var width = 0;
+        var sign = -1;
+        var maxDucksPerRow = 1;
         var currentRow = 0;
-        var x = -duck.formationPaddingFactor;
-        for (var i = 0; i < duck.instances.length; i++, x = -x) {
+        var currentDucksInRow = 0;
+        for (var i = 0; i < duck.instances.length; i++, sign = -sign) {
             var instance = duck.instances[i];
-            var newPos = [ currentRow * duck.width * x, 0, currentRow * duck.getFormationWidth() ];
-            console.log("duck #" + i + "'s new position: " + newPos);
+            var newPos = [ width * sign, 0, currentRow * duck.getFormationWidth() ];
             instance.setPosition(newPos);
 
+            if ( sign < 0 ) {
+                width += duck.getFormationWidth();
+            };
+
             ++currentDucksInRow;
-            if ( currentDucksInRow >= maxDucksPerRow ) {
+            if (currentDucksInRow >= maxDucksPerRow) {
+                width = 0;
+                sign = 1;
+                maxDucksPerRow += 2;
                 ++currentRow;
-                ++maxDucksPerRow;
                 currentDucksInRow = 0;
             };
         };
@@ -108,7 +142,6 @@ var formations = {
         for (var i = 0; i < duck.instances.length; i++, x = -x) {
             var instance = duck.instances[i];
             var newPos = [ currentRow * duck.width * x, 0, currentRow * duck.getFormationWidth() ];
-            console.log("duck #" + i + "'s new position: " + newPos);
             instance.setPosition(newPos);
 
             ++currentDucksInRow;
@@ -166,7 +199,6 @@ var mouse = {
     },
     scroll : function(evt) {
         var value = evt.deltaY * zoomingSensitivityFactor;
-        console.log("zooming value: " + value)
 
         if ( value > 0) {
             scene.getCamera().goFarther(value);
@@ -178,11 +210,9 @@ var mouse = {
 
 var key = {
     up : function(evt){
-        console.log("Key up: " + evt);
         keyDownEvent = evt;
     },
     down : function(evt){
-        console.log("Key down: " + evt);
         keyUpEvent = evt;
     }
 }
@@ -221,6 +251,7 @@ function canvasMain(canvasName){
             instance.init(duck.paths.model);
             instance.setTexture(duck.paths.texture);
             instance.yaw(Math.PI / 2);
+            instance.duckID = i;
             scene.addObjectToScene(instance);
 
             theDiv.innerHTML += '<input type="button" value="' + i + '" onClick="duck.setPicked(duck.instances[' + i + '])">';
@@ -234,12 +265,12 @@ function canvasMain(canvasName){
         };
 
         // Initial formation for the ducks
-        formations.line_right();
+        formations.line();
 
         var cam = new c3dl.OrbitCamera();
         cam.setFarthestDistance(3000);
         cam.setClosestDistance(60);
-        cam.setOrbitPoint([0.0, duck.height, 0.0]);
+        cam.setOrbitPoint([0.0, duck.height, duck.getFormationWidth()]);
         cam.setDistance(600);
         scene.setCamera(cam);
 
@@ -262,7 +293,7 @@ function pickHandler (result) {
     if (objects.length <= 0) {
         return;
     };
-
+    console.log("Picked duck #" + objects[0].duckID)
     duck.setPicked(objects[0]);
 }
 
