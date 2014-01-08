@@ -14,11 +14,23 @@
       </table>
     </div>
     <div id="initializers">
-      <input id="numDucks" type="text" value="10">
+      <input id="numDucks" type="text" value="9">
       <input type="button" value="Go!" onClick="go('mainCanvas');">
     </div>
     <!-- Add a canvas element to the page. It is scripted by using its id -->
-    <canvas id="mainCanvas" style="border: 2px solid blue" width="840" height="504"></canvas>
+    <table>
+      <tr>
+        <td id="theCanvas"><canvas id="mainCanvas" style="border: 2px solid blue" width="840" height="504"></canvas></td>
+        <td id="controls">
+          <table>
+            <tr><td>Flock formation</td><td>Pick a duck</td></tr>
+            <tr><td><button type="button" disabled>A button</button></td><td>bla bla</td></tr>
+            <tr><td>bla bla</td><td>bla bla</td></tr>
+            <tr><td>bla bla</td><td>bla bla</td></tr>
+          </table>
+        </td>
+      </tr>
+    </table>
     <div id="formations">Flock formation: </div>
     <div id="buttons">Pick a duck: </div>
   </body>

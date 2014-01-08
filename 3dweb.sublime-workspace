@@ -75,7 +75,7 @@
 			"file": "source/c3dl/assignment/main.js",
 			"settings":
 			{
-				"buffer_size": 7123,
+				"buffer_size": 7577,
 				"line_ending": "Windows",
 				"name": "// Tutorial 2: the javascript"
 			}
@@ -84,8 +84,17 @@
 			"file": "source/c3dl/assignment/index.html",
 			"settings":
 			{
-				"buffer_size": 812,
+				"buffer_size": 811,
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "0 1 2 3 4 5 6 7 8\n\n-> 3 rows, 3 columns\n\n0 1 2\n3 4 5\n7 8 9\n\nfor row in range(rows):\n	for col in range(columns):\n		instance[ row * col ].setPos(...)\n",
+			"settings":
+			{
+				"buffer_size": 148,
+				"line_ending": "Windows",
+				"name": "0 1 2 3 4 5 6 7 8"
 			}
 		}
 	],
@@ -125,8 +134,8 @@
 	},
 	"file_history":
 	[
-		"/D/Projects/3d-web-programming/source/c3dl/assignment/main2.js",
 		"/C/cygwin64/d/Projects/3d-web-programming/.git/COMMIT_EDITMSG",
+		"/D/Projects/3d-web-programming/source/c3dl/assignment/main2.js",
 		"/D/Projects/3d-web-programming/assets/models/josy/josy.dae",
 		"/D/Projects/3d-web-programming/source/three/car/index.html",
 		"/D/Projects/3d-web-programming/source/three/car/main.js",
@@ -271,6 +280,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"columns",
 			"duck.instances",
 			"instances",
 			"tutorial",
@@ -400,25 +410,26 @@
 					"file": "source/c3dl/assignment/main.js",
 					"settings":
 					{
-						"buffer_size": 7123,
+						"buffer_size": 7577,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1592,
-								1592
+								1728,
+								1728
 							]
 						],
 						"settings":
 						{
 							"auto_name": "// Tutorial 2: the javascript",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 360.0,
+						"translation.y": 660.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -428,15 +439,15 @@
 					"file": "source/c3dl/assignment/index.html",
 					"settings":
 					{
-						"buffer_size": 812,
+						"buffer_size": 811,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								794,
-								794
+								449,
+								449
 							]
 						],
 						"settings":
@@ -444,6 +455,32 @@
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"settings":
+					{
+						"buffer_size": 148,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								147,
+								147
+							]
+						],
+						"settings":
+						{
+							"auto_name": "0 1 2 3 4 5 6 7 8",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

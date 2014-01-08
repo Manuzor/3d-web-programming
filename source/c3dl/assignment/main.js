@@ -3,11 +3,12 @@ duck = {
         model : "../../../assets/models/duck/duck.dae",
         texture : "../../../assets/models/duck/duck.png"
     },
-    instances : new Array(10),
+    instances : [],
     angularVelOnClick : [ 0, 0.001, 0 ],
     activelyRotating : null,
     width : 75,
     height : 100,
+    formationPaddingFactor : 2.5,
 
     // methods
     setPicked : function(d){
@@ -28,135 +29,162 @@ duck = {
         } else {
             duck.activelyRotating = null;
         };
+    },
+    getFormationWidth : function(){
+        return duck.width * duck.formationPaddingFactor;
     }
 };
 
 var formations = {
     line_right : function(){
         for (var i = 0; i < duck.instances.length; i++) {
+            console.log("before #" + i);
             var instance = duck.instances[i];
-            instance.setPosition([ -duck.width * i * 2, 0, 0 ]);
+            instance.setPosition([ -duck.width * i * duck.formationPaddingFactor, 0, 0 ]);
+            console.log("after #" + i);
         };
     },
     line_left : function(){
         for (var i = 0; i < duck.instances.length; i++) {
             var instance = duck.instances[i];
-            instance.setPosition([ duck.width * i * 2, 0, 0 ]);
+            instance.setPosition([ duck.width * i * duck.formationPaddingFactor, 0, 0 ]);
         };
     },
     line_centered : function(){
-        var x = -1;
-        for (var i = 0; i < duck.instances.length; i++, x = -x) {
+        var width = 0;
+        var sign = -1;
+        for (var i = 0; i < duck.instances.length; i++, sign = -sign) {
             var instance = duck.instances[i];
-            instance.setPosition([ -duck.width * i * x, 0, 0 ]);
+            var newPos = [ width * sign, 0, 0 ];
+            instance.setPosition(newPos);
+
+            if ( sign < 0 ) {
+                width += duck.getFormationWidth() * sign;
+            };
         };
+
     },
     square : function(){
-        
+        var rows = columns = Math.round(Math.sqrt(duck.instances.length));
+        if (rows * columns < duck.instances.length) {
+            ++rows;
+        };
+
+        console.log("[" + columns + "x" + rows + "]")
+        var i = 0;
+        for (var row = 0; row < rows && i < duck.instances.length; ++row) {
+            for (var col = 0; col < columns && i < duck.instances.length; ++col, ++i) {
+                var instance = duck.instances[ i ];
+                var newPos = [ col * duck.getFormationWidth(), 0, row * duck.getFormationWidth() ];
+                console.log("duck #" + i + "'s new position: " + newPos);
+                instance.setPosition(newPos);
+            };
+        };
     },
     wedge : function(){
-        for (var i = 0; i < duck.instances.length; i++) {
+        var maxDucksPerRow = 2;
+        var currentDucksInRow = 1;
+        var currentRow = 0;
+        var x = -duck.formationPaddingFactor;
+        for (var i = 0; i < duck.instances.length; i++, x = -x) {
+            var instance = duck.instances[i];
+            var newPos = [ currentRow * duck.width * x, 0, currentRow * duck.getFormationWidth() ];
+            console.log("duck #" + i + "'s new position: " + newPos);
+            instance.setPosition(newPos);
+
+            ++currentDucksInRow;
+            if ( currentDucksInRow >= maxDucksPerRow ) {
+                ++currentRow;
+                ++maxDucksPerRow;
+                currentDucksInRow = 0;
+            };
+        };
+    },
+    the_v : function(){
+        var maxDucksPerRow = 2;
+        var currentDucksInRow = 1;
+        var currentRow = 0;
+        var x = -duck.formationPaddingFactor;
+        for (var i = 0; i < duck.instances.length; i++, x = -x) {
+            var instance = duck.instances[i];
+            var newPos = [ currentRow * duck.width * x, 0, currentRow * duck.getFormationWidth() ];
+            console.log("duck #" + i + "'s new position: " + newPos);
+            instance.setPosition(newPos);
+
+            ++currentDucksInRow;
+            if ( currentDucksInRow >= maxDucksPerRow ) {
+                ++currentRow;
+                currentDucksInRow = 0;
+            };
         };
     }
 }
-
-c3dl.addModel(duck.paths.model);
 
 function go (theName) {
     canvasMain(theName);
 }
 
-var isDragging = false; //tracks or not the user is currently dragging the mouse
-var isZooming = false;
+c3dl.addModel(duck.paths.model);
+
+var isDragging = false;
 var rotationStartCoords = [0,0]; //The mouse coordinates at the beginning of a rotation
 var SENSITIVITY = 0.7;
 var zoomingSensitivityFactor = 0.5;
 
 var mouse = {
-    down : {
-        startCoords : { x : 0, y : 0 },
-        prevCoords : { x : 0, y: 0 },
-        currCoords : { x : 0, y: 0 },
-        delta : { x : 0, y : 0 },
-        deltaStart : { x : 0, y : 0 }
-    }
-}
-
-//Called when the user releases the left mouse button.
-//Records that the user is no longer dragging the mouse
-function mouseUp(evt)
-{
-    if(evt.which == 1) {
-        isDragging = false;
-    } else if (evt.which == 2) {
-        isZooming = false;
-    };
-}
-
-//Called when the user presses the left mouse button.
-//Records that the user may start to drag the mouse, along with the current X & Y
-// coordinates of the mouse.
-function mouseDown(evt)
-{
-    mouse.down.startCoords = mouse.down.prevCoords = mouse.down.currCoords = { x : evt.clientX, y : evt.clientY };
-
-    if(evt.which == 1) {
-        isDragging = true;
-        rotationStartCoords[0] = calcRelativeMouseX(evt);
-        rotationStartCoords[1] = calcRelativeMouseY(evt);
-    } else if(evt.which == 2) {
-        isZooming = true;
-    }
-}
-
-//Called when the mouse moves
-//This function will only do anything when the user is currently holding
-// the left mouse button.  It will determine how far the cursor has moved
-// since the last update and will pitch and yaw the camera based on that
-// amount and the sensitivity variable.
-function mouseMove(evt)
-{
-    mouse.down.prevCoords = mouse.down.currCoords;
-    mouse.down.currCoords = { x : 0, y : 0 };
-    //mouse.down.delta = {
-    //    x : mouse.down.currCoords.x - mouse.down.prevCoords.x,
-    //    y : mouse.down.currCoords.y - mouse.down.prevCoords.y
-    //}
-    //mouse.down.deltaStart = {
-    //    x : mouse.down.startCoords.x - mouse.down.prevCoords.x,
-    //    y : mouse.down.startCoords.y - mouse.down.prevCoords.y
-    //}
-    if(isDragging)
+    up : function(evt)
     {
-        var cam = scene.getCamera();
-        var x = calcRelativeMouseX(evt);
-        var y = calcRelativeMouseY(evt);
+        if(evt.which == 1) {
+            isDragging = false;
+        };
+        evt.stopPropagation();
+    },
+    down : function(evt)
+    {
+        if(evt.which == 1) {
+            isDragging = true;
+            rotationStartCoords[0] = calcRelativeMouseX(evt);
+            rotationStartCoords[1] = calcRelativeMouseY(evt);
+        }
+    },
+    move : function(evt)
+    {
+        if(isDragging)
+        {
+            var cam = scene.getCamera();
+            var x = calcRelativeMouseX(evt);
+            var y = calcRelativeMouseY(evt);
 
-        // how much was the cursor moved compared to last time
-        // this function was called?
-        var deltaX = x - rotationStartCoords[0];
-        var deltaY = y - rotationStartCoords[1];
+            var deltaX = x - rotationStartCoords[0];
+            var deltaY = y - rotationStartCoords[1];
 
-        cam.yaw(-deltaX * SENSITIVITY);
-        cam.pitch(deltaY * SENSITIVITY);
+            cam.yaw(-deltaX * SENSITIVITY);
+            cam.pitch(deltaY * SENSITIVITY);
 
-        // now that the camera was updated, reset where the
-        // rotation will start for the next time this function is
-        // called.
-        rotationStartCoords = [x,y];
+            rotationStartCoords = [x,y];
+        }
+    },
+    scroll : function(evt) {
+        var value = evt.deltaY * zoomingSensitivityFactor;
+        console.log("zooming value: " + value)
+
+        if ( value > 0) {
+            scene.getCamera().goFarther(value);
+        } else if ( value < 0 ) {
+            scene.getCamera().goCloser(-value);
+        };
     }
 }
 
-function mouseScroll (evt) {
-    var value = evt.deltaY * zoomingSensitivityFactor;
-    console.log("zooming value: " + value)
-
-    if ( value > 0) {
-        scene.getCamera().goFarther(value);
-    } else if ( value < 0 ) {
-        scene.getCamera().goCloser(-value);
-    };
-
+var key = {
+    up : function(evt){
+        console.log("Key up: " + evt);
+        keyDownEvent = evt;
+    },
+    down : function(evt){
+        console.log("Key down: " + evt);
+        keyUpEvent = evt;
+    }
 }
 
 //Calculates the current X coordinate of the mouse in the client window
@@ -185,9 +213,10 @@ function canvasMain(canvasName){
     if(renderer.isReady() )
     {
         var theDiv = document.getElementById("buttons");
-        var max = parseInt(document.getElementById("numDucks").value);
+        var numDucks = parseInt(document.getElementById("numDucks").value);
+        console.log("Creating " + numDucks + " ducks.");
         var x = -2; // Used to toggle between spawning a duck left or right relative to the origin
-        for (var i = 0; i < max; ++i) {
+        for (var i = 0; i < numDucks; ++i) {
             var instance = duck.instances[i] = new c3dl.Collada();
             instance.init(duck.paths.model);
             instance.setTexture(duck.paths.texture);
@@ -204,6 +233,9 @@ function canvasMain(canvasName){
             theDiv.innerHTML += '<input type="button" value="' + func.toString().replace("_", " ") + '" onClick="formations.' + func + '()">';
         };
 
+        // Initial formation for the ducks
+        formations.line_right();
+
         var cam = new c3dl.OrbitCamera();
         cam.setFarthestDistance(3000);
         cam.setClosestDistance(60);
@@ -211,7 +243,8 @@ function canvasMain(canvasName){
         cam.setDistance(600);
         scene.setCamera(cam);
 
-        scene.setMouseCallback(mouseUp, mouseDown, mouseMove, mouseScroll);
+        scene.setMouseCallback(mouse.up, mouse.down, mouse.move, mouse.scroll);
+        scene.setKeyboardCallback(key.up, key.down);
 
         scene.startScene();
         scene.setPickingCallback(pickHandler);
@@ -220,22 +253,20 @@ function canvasMain(canvasName){
 }
 
 function pickHandler (result) {
-    var objects = result.getObjects();
-    if (result.getButtonUsed() != 1 && objects.length <= 0) {
+    // Only allow picking with the left mouse button
+    if (result.getButtonUsed() != 1) {
         return;
     };
+
+    var objects = result.getObjects();
+    if (objects.length <= 0) {
+        return;
+    };
+
     duck.setPicked(objects[0]);
 }
 
 function update (elapsedMilliseconds) {
     var fpsDisplay = document.getElementById("fps");
     fpsDisplay.innerHTML = scene.getFPS();
-}
-
-function square () {
-    
-}
-
-function line () {
-    
 }
