@@ -1,0 +1,23 @@
+No history.
+No c3dl.
+No details about x3dom
+No code.
+No ACM Sigraph.
+No binary compression of models.
+No future tools.
+
+Important:
+- Basics of WebGL
+- Differences between x3dom and Three.js
+- Fundamental idea of Three.js
+- Problems of c3dl, x3dom and three.js
+- Pros and cons of all 3 options
+- Exporting / Importing modles. Howto and problems
+- Virtual office / Virtual Environment
+- Simulations (Water, Cloth, Physics, etc)
+- Limitations of web3d. Security issues of web3d. Efficeny issues.
+
+Exam:
+Two main questions. Multiple subquestions per question.
+
+Googeling allowed xD?
