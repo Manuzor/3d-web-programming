@@ -25,6 +25,17 @@ duck = {
                 duck.picked = d;
                 //duck.picked.setAngularVel(duck.angularVelOnClick);
                 duck.picked.renderObb = true;
+
+                // Update the editor fields
+                var scaleTextField = document.getElementById("scale");
+                scaleTextField.value = [duck.picked.scaleVec[0], duck.picked.scaleVec[1], duck.picked.scaleVec[2]];
+                scaleTextField.removeAttribute("disabled");
+                document.getElementById("scaleButton").removeAttribute("disabled");
+
+                var textureButtons = document.getElementById("textureButtons");
+                for (var attr in duck.paths.textures) {
+                    document.getElementById("textureButton_" + attr).removeAttribute("disabled");
+                };
             }
             function disable() {
                 duck.picked.setAngularVel([0, 0, 0]);
@@ -32,6 +43,17 @@ duck = {
                 console.log("Resetting turned -> " + duck.picked.turned);
                 duck.picked.yaw(-duck.picked.turned);
                 duck.picked.turned = 0.0;
+
+                // Update the editor fields
+                var scaleTextField = document.getElementById("scale");
+                scaleTextField.value = "";
+                scaleTextField.setAttribute("disabled");
+                document.getElementById("scaleButton").setAttribute("disabled");
+
+                var textureButtons = document.getElementById("textureButtons");
+                for (var attr in duck.paths.textures) {
+                    document.getElementById("textureButton_" + attr).setAttribute("disabled");
+                };
             }
             if ( d == null ) {
                 return;
@@ -60,6 +82,16 @@ duck = {
     setTextureOfPicked : function(textureName){
         if (duck.picked != null) {
             duck.picked.setTexture(textureName);
+        };
+    },
+    setScaleOfPicked : function(vectorAsString){
+        if (vectorAsString == null) {
+            vectorAsString = document.getElementById("scale").value;
+        };
+        var newScale = vectorAsString.split(",");
+        if (duck.picked != null) {
+            console.log("Setting scale of duck #" + duck.picked.duckID + " to " + newScale);
+            duck.picked.setScale(newScale);
         };
     }
 };
@@ -280,6 +312,11 @@ function canvasMain(canvasName){
             instance.yaw(Math.PI / 2);
             instance.duckID = i;
             instance.turned = 0.0;
+            instance.setScale = function(scaleVec) {
+                this.sceneGraph.scaleVec = scaleVec;
+                this.boundingVolume.scaleVec = scaleVec;
+                this.setDirty(true);
+            };
             scene.addObjectToScene(instance);
 
             theDiv.innerHTML += '<input type="button" value="' + i + '" onClick="duck.setPicked(duck.instances[' + i + '])">';
@@ -298,7 +335,7 @@ function canvasMain(canvasName){
         // Make texture change buttons
         var textureButtons = document.getElementById("textureButtons");
         for (var attr in duck.paths.textures) {
-            textureButtons.innerHTML += '<button type="button" onClick="duck.setTextureOfPicked(duck.paths.textures.' + attr + ')">' + attr + '</button>'
+            textureButtons.innerHTML += '<button id="textureButton_' + attr + '" type="button" onClick="duck.setTextureOfPicked(duck.paths.textures.' + attr + ')" disabled>' + attr + '</button>'
         };
 
         var cam = new c3dl.OrbitCamera();

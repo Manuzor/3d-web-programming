@@ -27,8 +27,9 @@
       <tr>
         <td id="theCanvas"><canvas id="mainCanvas" style="border: 2px solid blue" width="600" height="300"></canvas></td>
         <td id="controls">
+          <div>Pick a duck to enable the controls below.</div>
           <table class="borders">
-            <tr><td>Scale</td><td><input id="scale" type="text" value="0, 0, 0" width="30"><button type="button">Apply</button></td></tr>
+            <tr><td>Scale</td><td><input id="scale" type="text" size="12" value="" disabled/><button id="scaleButton" type="button" onClick="duck.setScaleOfPicked()" disabled>Apply</button></td></tr>
             <tr><td>Texture</td><td><div id="textureButtons"></div></td></tr>
           </table>
         </td>
