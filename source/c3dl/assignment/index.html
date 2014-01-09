@@ -3,6 +3,11 @@
     <title>3D Web application by Manuel Maier</title>
     <script type="application/javascript" src="../../../lib/c3dl/c3dapi.js" ></script>
     <script type="application/javascript" src="main.js"></script>
+    <style type="text/css">
+    table.borders { border: 1px solid;}
+    table.borders tr { border: 1px solid; }
+    table.borders td { border: 1px solid; }
+    </style>
   </head>
   <body>
     <div>
@@ -22,11 +27,9 @@
       <tr>
         <td id="theCanvas"><canvas id="mainCanvas" style="border: 2px solid blue" width="600" height="300"></canvas></td>
         <td id="controls">
-          <table>
-            <tr><td>Flock formation</td><td>Pick a duck</td></tr>
-            <tr><td><button type="button" disabled>A button</button></td><td>bla bla</td></tr>
-            <tr><td>bla bla</td><td>bla bla</td></tr>
-            <tr><td>bla bla</td><td>bla bla</td></tr>
+          <table class="borders">
+            <tr><td>Scale</td><td><input id="scale" type="text" value="0, 0, 0" width="30"><button type="button">Apply</button></td></tr>
+            <tr><td>Texture</td><td><div id="textureButtons"></div></td></tr>
           </table>
         </td>
       </tr>

@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"rect",
+				"rectangulationFactor"
+			],
+			[
+				"forma",
+				"formationPaddingFactor"
+			],
+			[
 				"for",
 				"for	for (…) {…}"
 			],
@@ -75,7 +83,7 @@
 			"file": "source/c3dl/assignment/main.js",
 			"settings":
 			{
-				"buffer_size": 7577,
+				"buffer_size": 9139,
 				"line_ending": "Windows",
 				"name": "// Tutorial 2: the javascript"
 			}
@@ -84,7 +92,7 @@
 			"file": "source/c3dl/assignment/index.html",
 			"settings":
 			{
-				"buffer_size": 811,
+				"buffer_size": 1234,
 				"line_ending": "Windows"
 			}
 		},
@@ -134,7 +142,9 @@
 	},
 	"file_history":
 	[
+		"/C/cygwin64/d/Projects/3d-web-programming/.git/MERGE_MSG",
 		"/C/cygwin64/d/Projects/3d-web-programming/.git/COMMIT_EDITMSG",
+		"/C/cygwin64/d/Projects/schemePy/schemepy/evaluator.py",
 		"/D/Projects/3d-web-programming/source/c3dl/assignment/main2.js",
 		"/D/Projects/3d-web-programming/assets/models/josy/josy.dae",
 		"/D/Projects/3d-web-programming/source/three/car/index.html",
@@ -259,9 +269,7 @@
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-movies.txt",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-games.txt",
 		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/manu-and-maria-anime.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria-lp.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_movies.txt",
-		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria_games.txt"
+		"/C/Users/Manu/Cloud Services/Dropbox/Dafuq/ToDo/maria-lp.txt"
 	],
 	"find":
 	{
@@ -280,6 +288,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console.log",
+			"line_centered",
+			"duck.width * duck.formationPaddingFactor",
+			"duck.instances",
+			"evt.which",
+			"isZooming",
+			"mouse.",
 			"columns",
 			"duck.instances",
 			"instances",
@@ -365,6 +380,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"line",
+			"duck.getFormationWidth()",
 			"value",
 			"scene",
 			"calcRelativeMouseY",
@@ -410,15 +427,15 @@
 					"file": "source/c3dl/assignment/main.js",
 					"settings":
 					{
-						"buffer_size": 7577,
+						"buffer_size": 9139,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1728,
-								1728
+								3258,
+								3258
 							]
 						],
 						"settings":
@@ -429,7 +446,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 660.0,
+						"translation.y": 1065.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -439,15 +456,15 @@
 					"file": "source/c3dl/assignment/index.html",
 					"settings":
 					{
-						"buffer_size": 811,
+						"buffer_size": 1234,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								449,
-								449
+								737,
+								737
 							]
 						],
 						"settings":

@@ -1,7 +1,11 @@
 duck = {
     paths : {
         model : "../../../assets/models/duck/duck.dae",
-        texture : "../../../assets/models/duck/duck.png"
+        textures : {
+            default : "../../../assets/models/duck/duck.png",
+            green : "../../../assets/models/duck/duck2.png",
+            camo : "../../../assets/models/duck/camo.png"
+        }
     },
     instances : [],
     angularVelOnClick : [ 0, 0.001, 0 ],
@@ -10,27 +14,39 @@ duck = {
     height : 100,
     formationPaddingFactor : 2.5,
     pickedCallback : null,
+    recommendedMaxAmount : 100,
+    radPerSecond : 1.5,
 
     // methods
     setPicked : function(d){
         function helper(d)
         {
+            function enable(d) {
+                duck.picked = d;
+                //duck.picked.setAngularVel(duck.angularVelOnClick);
+                duck.picked.renderObb = true;
+            }
+            function disable() {
+                duck.picked.setAngularVel([0, 0, 0]);
+                duck.picked.renderObb = false;
+                console.log("Resetting turned -> " + duck.picked.turned);
+                duck.picked.yaw(-duck.picked.turned);
+                duck.picked.turned = 0.0;
+            }
             if ( d == null ) {
                 return;
             };
-            if ( duck.activelyRotating == null ) {
-                duck.activelyRotating = d;
-                duck.activelyRotating.setAngularVel(duck.angularVelOnClick);
+            if ( duck.picked == null ) {
+                enable(d);
                 return;
             };
 
-            duck.activelyRotating.setAngularVel([0, 0, 0]);
+            disable();
 
-            if (d != duck.activelyRotating) {
-                duck.activelyRotating = d;
-                duck.activelyRotating.setAngularVel(duck.angularVelOnClick);
+            if (d != duck.picked) {
+                enable(d);
             } else {
-                duck.activelyRotating = null;
+                duck.picked = null;
             };
         }
         helper(d);
@@ -40,6 +56,11 @@ duck = {
     },
     getFormationWidth : function(){
         return duck.width * duck.formationPaddingFactor;
+    },
+    setTextureOfPicked : function(textureName){
+        if (duck.picked != null) {
+            duck.picked.setTexture(textureName);
+        };
     }
 };
 
@@ -153,7 +174,7 @@ var formations = {
     }
 }
 
-function go (theName) {
+function go(theName) {
     canvasMain(theName);
 }
 
@@ -230,6 +251,13 @@ function calcRelativeMouseY(evt)
 }
 
 function canvasMain(canvasName){
+    var numDucks = parseInt(document.getElementById("numDucks").value);
+    if (numDucks > duck.recommendedMaxAmount) {
+        var result = confirm("You are about to spawn more than " + duck.recommendedMaxAmount + " ducks. This can be very slow.");
+        if (!result) {
+            return;
+        };
+    };
 
     scene = new c3dl.Scene();
     scene.setCanvasTag(canvasName);
@@ -243,15 +271,15 @@ function canvasMain(canvasName){
     if(renderer.isReady() )
     {
         var theDiv = document.getElementById("buttons");
-        var numDucks = parseInt(document.getElementById("numDucks").value);
         console.log("Creating " + numDucks + " ducks.");
         var x = -2; // Used to toggle between spawning a duck left or right relative to the origin
         for (var i = 0; i < numDucks; ++i) {
             var instance = duck.instances[i] = new c3dl.Collada();
             instance.init(duck.paths.model);
-            instance.setTexture(duck.paths.texture);
+            instance.setTexture(duck.paths.textures.default);
             instance.yaw(Math.PI / 2);
             instance.duckID = i;
+            instance.turned = 0.0;
             scene.addObjectToScene(instance);
 
             theDiv.innerHTML += '<input type="button" value="' + i + '" onClick="duck.setPicked(duck.instances[' + i + '])">';
@@ -266,6 +294,12 @@ function canvasMain(canvasName){
 
         // Initial formation for the ducks
         formations.line();
+
+        // Make texture change buttons
+        var textureButtons = document.getElementById("textureButtons");
+        for (var attr in duck.paths.textures) {
+            textureButtons.innerHTML += '<button type="button" onClick="duck.setTextureOfPicked(duck.paths.textures.' + attr + ')">' + attr + '</button>'
+        };
 
         var cam = new c3dl.OrbitCamera();
         cam.setFarthestDistance(3000);
@@ -283,7 +317,7 @@ function canvasMain(canvasName){
     }
 }
 
-function pickHandler (result) {
+function pickHandler(result) {
     // Only allow picking with the left mouse button
     if (result.getButtonUsed() != 1) {
         return;
@@ -297,7 +331,16 @@ function pickHandler (result) {
     duck.setPicked(objects[0]);
 }
 
-function update (elapsedMilliseconds) {
+function update(elapsedMilliseconds) {
     var fpsDisplay = document.getElementById("fps");
     fpsDisplay.innerHTML = scene.getFPS();
+
+    if (duck.picked != null) {
+        var turnValue = duck.radPerSecond * elapsedMilliseconds / 1000;
+        duck.picked.yaw(turnValue);
+        duck.picked.turned += turnValue;
+        while (duck.picked.turned > Math.PI * 2) {
+            duck.picked.turned -= Math.PI * 2;
+        };
+    };
 }
