@@ -3,18 +3,42 @@
     <title>3D Web application by Manuel Maier</title>
     <script type="application/javascript" src="../../../lib/c3dl/c3dapi.js" ></script>
     <script type="application/javascript" src="main.js"></script>
+    <style type="text/css">
+    table.borders { border: 1px solid;}
+    table.borders tr { border: 1px solid; }
+    table.borders td { border: 1px solid; }
+    </style>
   </head>
   <body>
-    <div>
-      <table>
-        <tr>
-          <td>FPS</td>
-          <td id="fps">0.0</td>
-        </tr>
-      </table>
+    <p>
+      <p><b>3D Web Programming</b> assignment by Manuel Maier (mm198) using the <a href="http://www.c3dl.org/">Canvas 3D javascript library</a> version.</p>
+    </p>
+    <button onClick="toggle_visibility('info')">Toggle info</button>
+    <div id="info" style="display: none;">
+      <p>
+        Usage:
+        <ol>
+          <li>Enter a number in the textfield below to specify how many ducks will be spawned. To spawn them, press the "Go!" button. Reload the page to start over.</li>
+          <li>Hold the left mouse button to look around. Use the mousewheel to zoom in and out. Left click a duck to set it as active and left click it again to de-select it.</li>
+          <li>Use the controls on the right-hand side to modify the selected duck.</li>
+        </ol>
+      </p>
+      <p>
+        Sources:
+        <ul>
+          <li>Duck model and default texture from <a href="http://www.c3dl.org/index.php/tutorials/tutorial-2-a-simple-scene/">http://www.c3dl.org/index.php/tutorials/tutorial-2-a-simple-scene/</a>. Other duck textures made by modifying the default texture using Gimp2.</li>
+          <li>The source code is a heavily modified version of the tutorial that can be found at <a href="http://www.c3dl.org/index.php/tutorials/tutorial-11-orbitcamera/">http://www.c3dl.org/index.php/tutorials/tutorial-11-orbitcamera/</a></li>
+        </ul>
+      </p>
     </div>
+    <table>
+      <tr>
+        <td>FPS</td>
+        <td id="fps">0.0</td>
+      </tr>
+    </table>
     <div id="initializers">
-      <input id="numDucks" type="text" value="9">
+      Number of ducks: <input id="numDucks" type="text" value="9" size="1" onkeydown="if (event.keyCode == 13) go('mainCanvas');">
       <input type="button" value="Go!" onClick="go('mainCanvas');">
     </div>
     <!-- Add a canvas element to the page. It is scripted by using its id -->
@@ -22,11 +46,10 @@
       <tr>
         <td id="theCanvas"><canvas id="mainCanvas" style="border: 2px solid blue" width="600" height="300"></canvas></td>
         <td id="controls">
-          <table>
-            <tr><td>Flock formation</td><td>Pick a duck</td></tr>
-            <tr><td><button type="button" disabled>A button</button></td><td>bla bla</td></tr>
-            <tr><td>bla bla</td><td>bla bla</td></tr>
-            <tr><td>bla bla</td><td>bla bla</td></tr>
+          <div>Pick a duck to enable the controls below.</div>
+          <table class="borders">
+            <tr><td>Scale</td><td><input id="scale" type="text" size="12" value="" onkeydown="if (event.keyCode == 13) duck.setScaleOfPicked();" disabled/><button id="scaleButton" type="button" onClick="duck.setScaleOfPicked();" disabled>Apply</button></td></tr>
+            <tr><td>Texture</td><td><div id="textureButtons"></div></td></tr>
           </table>
         </td>
       </tr>
@@ -34,4 +57,5 @@
     <div id="formations">Flock formation: </div>
     <div id="buttons">Pick a duck: </div>
   </body>
+  <script type="text/javascript">init();</script>
 </html>
