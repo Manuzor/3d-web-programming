@@ -323,20 +323,8 @@ function canvasMain(canvasName){
         };
         document.getElementById("initializers").innerHTML = "";
 
-        theDiv = document.getElementById("formations");
-        // Make fomration buttons
-        for (var func in formations) {
-            theDiv.innerHTML += '<input type="button" value="' + func.toString().replace("_", " ") + '" onClick="formations.' + func + '()">';
-        };
-
         // Initial formation for the ducks
         formations.line();
-
-        // Make texture change buttons
-        var textureButtons = document.getElementById("textureButtons");
-        for (var attr in duck.paths.textures) {
-            textureButtons.innerHTML += '<button id="textureButton_' + attr + '" type="button" onClick="duck.setTextureOfPicked(duck.paths.textures.' + attr + ')" disabled>' + attr + '</button>'
-        };
 
         var cam = new c3dl.OrbitCamera();
         cam.setFarthestDistance(3000);
@@ -380,4 +368,28 @@ function update(elapsedMilliseconds) {
             duck.picked.turned -= Math.PI * 2;
         };
     };
+}
+
+function init () {
+    var theDiv = document.getElementById("formations");
+    // Make fomration buttons
+    for (var func in formations) {
+        theDiv.innerHTML += '<input type="button" value="' + func.toString().replace("_", " ") + '" onClick="formations.' + func + '()">';
+    };
+
+    // Make texture change buttons
+    var textureButtons = document.getElementById("textureButtons");
+    for (var attr in duck.paths.textures) {
+        textureButtons.innerHTML += '<button id="textureButton_' + attr + '" type="button" onClick="duck.setTextureOfPicked(duck.paths.textures.' + attr + ')" disabled>' + attr + '</button>'
+    };
+}
+
+// Misc helpers
+function toggle_visibility(id) {
+    var e = document.getElementById(id);
+    if(e.style.display == 'none') {
+        e.style.display = 'block';
+    } else {
+        e.style.display = 'none';
+    }
 }
