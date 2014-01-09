@@ -23,12 +23,12 @@ duck = {
         {
             function enable(d) {
                 duck.picked = d;
-                //duck.picked.setAngularVel(duck.angularVelOnClick);
                 duck.picked.renderObb = true;
 
                 // Update the editor fields
                 var scaleTextField = document.getElementById("scale");
-                scaleTextField.value = [duck.picked.scaleVec[0], duck.picked.scaleVec[1], duck.picked.scaleVec[2]];
+                var theScaleVec = duck.picked.getSceneGraph().scaleVec;
+                scaleTextField.value = [theScaleVec[0], theScaleVec[1], theScaleVec[2]];
                 scaleTextField.removeAttribute("disabled");
                 document.getElementById("scaleButton").removeAttribute("disabled");
 
@@ -38,7 +38,6 @@ duck = {
                 };
             }
             function disable() {
-                duck.picked.setAngularVel([0, 0, 0]);
                 duck.picked.renderObb = false;
                 console.log("Resetting turned -> " + duck.picked.turned);
                 duck.picked.yaw(-duck.picked.turned);
@@ -312,6 +311,7 @@ function canvasMain(canvasName){
             instance.yaw(Math.PI / 2);
             instance.duckID = i;
             instance.turned = 0.0;
+            //instance.currentScale = [1, 1, 1];
             instance.setScale = function(scaleVec) {
                 this.sceneGraph.scaleVec = scaleVec;
                 this.boundingVolume.scaleVec = scaleVec;

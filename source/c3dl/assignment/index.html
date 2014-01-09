@@ -38,7 +38,7 @@
       </tr>
     </table>
     <div id="initializers">
-      Number of ducks: <input id="numDucks" type="text" value="9" size="1">
+      Number of ducks: <input id="numDucks" type="text" value="9" size="1" onkeydown="if (event.keyCode == 13) go('mainCanvas');">
       <input type="button" value="Go!" onClick="go('mainCanvas');">
     </div>
     <!-- Add a canvas element to the page. It is scripted by using its id -->
@@ -48,7 +48,7 @@
         <td id="controls">
           <div>Pick a duck to enable the controls below.</div>
           <table class="borders">
-            <tr><td>Scale</td><td><input id="scale" type="text" size="12" value="" disabled/><button id="scaleButton" type="button" onClick="duck.setScaleOfPicked()" disabled>Apply</button></td></tr>
+            <tr><td>Scale</td><td><input id="scale" type="text" size="12" value="" onkeydown="if (event.keyCode == 13) duck.setScaleOfPicked();" disabled/><button id="scaleButton" type="button" onClick="duck.setScaleOfPicked();" disabled>Apply</button></td></tr>
             <tr><td>Texture</td><td><div id="textureButtons"></div></td></tr>
           </table>
         </td>
