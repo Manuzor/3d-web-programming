@@ -2,16 +2,7 @@
 	"folders":
 	[
 		{
-			"path": "lib"
-		},
-		{
-			"path": "3dweb"
-		},
-		{
-			"path": "assets"
-		},
-		{
-			"path": "source"
+			"path": "."
 		}
 	]
 }
