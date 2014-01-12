@@ -319,7 +319,7 @@ function canvasMain(canvasName){
             };
             scene.addObjectToScene(instance);
 
-            theDiv.innerHTML += '<input type="button" value="' + i + '" onClick="duck.setPicked(duck.instances[' + i + '])">';
+            theDiv.innerHTML += '<button onClick="duck.setPicked(duck.instances[' + i + '])">' + i + '</button>';
         };
         document.getElementById("initializers").innerHTML = "";
 
@@ -374,7 +374,7 @@ function init () {
     var theDiv = document.getElementById("formations");
     // Make fomration buttons
     for (var func in formations) {
-        theDiv.innerHTML += '<input type="button" value="' + func.toString().replace("_", " ") + '" onClick="formations.' + func + '()">';
+        theDiv.innerHTML += '<button onClick="formations.' + func + '()">' + func.toString().replace("_", " ") + '</button>';
     };
 
     // Make texture change buttons

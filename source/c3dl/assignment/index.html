@@ -3,10 +3,11 @@
     <title>C3DL - Duck Invaders</title>
     <script type="application/javascript" src="../../../lib/c3dl/c3dapi.js" ></script>
     <script type="application/javascript" src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../style.css">
     <style type="text/css">
-    table.borders { border: 1px solid;}
-    table.borders tr { border: 1px solid; }
-    table.borders td { border: 1px solid; }
+      table.borders { border: 1px solid;}
+      table.borders tr { border: 1px solid; }
+      table.borders td { border: 1px solid; }
     </style>
   </head>
   <body>
@@ -39,12 +40,12 @@
     </table>
     <div id="initializers">
       Number of ducks: <input id="numDucks" type="text" value="9" size="1" onkeydown="if (event.keyCode == 13) go('mainCanvas');">
-      <input type="button" value="Go!" onClick="go('mainCanvas');">
+      <button onClick="go('mainCanvas');">Go!</button>
     </div>
     <!-- Add a canvas element to the page. It is scripted by using its id -->
     <table>
       <tr>
-        <td id="theCanvas"><canvas id="mainCanvas" style="border: 2px solid blue" width="600" height="300"></canvas></td>
+        <td id="theCanvas"><canvas id="mainCanvas" style="border: 2px solid orange" width="600" height="300"></canvas></td>
         <td id="controls">
           <div>Pick a duck to enable the controls below.</div>
           <table class="borders">

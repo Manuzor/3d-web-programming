@@ -1,0 +1,5 @@
+body { background-color: #000000; color: #ddd; }
+a { color: orange; }
+a:visited { color: chocolate; }
+button { border: none; background-color: #202021; color: #ccc; padding: 5px 15px; }
+button:hover { color: #000; background-color: orange; }
