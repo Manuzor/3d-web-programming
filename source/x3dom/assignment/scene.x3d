@@ -1,0 +1,50 @@
+<environment gammaCorrectionDefault='linear' frustumCulling='true' smallFeatureCulling='true'></environment>
+<directionalLight direction='-2 -2.5 -1' intensity='1.0' shadowIntensity='0.7'></directionalLight>
+<transform translation="0 2 0">
+  <shape>
+    <appearance>
+      <material diffuseColor='red'></material>
+    </appearance>
+    <box></box>
+  </shape>
+</transform>
+<transform scale="10 0.1 10" translation="0 -2 0">
+  <shape>
+    <appearance>
+      <material diffuseColor='white'></material>
+    </appearance>
+    <box></box>
+  </shape>
+</transform>
+<Sound direction='0 0 -1' maxBack='1e+006' maxFront='1e+006' minBack='1e+006' minFront='1e+006' spatialize='false'>
+  <!--
+  <AudioClip DEF="audioClip" url='../../../assets/audio/37154__volivieri__soccer-ball-hit-ground-01.wav'/>
+  -->
+</Sound>
+
+<timeSensor
+  DEF='clock'
+  cycleInterval='8'
+  loop='true'>
+</timeSensor>
+
+<orientationInterpolator
+  id='interpolator'
+  DEF='spinThings'
+  key='0 0.5 1'
+  keyValue='0 0 0 0, 0 0 0 3.14, 0 0 0 6.28'>
+</orientationInterpolator>
+
+<ROUTE
+  fromNode='clock'
+  fromField='fraction_changed'
+  toNode='spinThings'
+  toField='set_fraction'>
+</ROUTE>
+
+<ROUTE
+  fromNode='spinThings'
+  fromField='value_changed'
+  toNode='rotThing'
+  toField='set_rotation'>
+</ROUTE>

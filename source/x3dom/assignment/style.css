@@ -1,0 +1,39 @@
+body {
+    background-color: #000000;
+    color: #fff;
+}
+
+a {
+    color: orange;
+}
+
+a:visited {
+    color: chocolate;
+}
+
+#canvas {
+    border: none;
+    background: #000 url(http://www.x3dom.org/x3dom/example/texture/solarSystem/starsbg.png);
+}
+
+button {
+    border: none;
+    background-color: #202021;
+    color: #ccc;
+    padding: 5px 15px;
+}
+
+button:hover {
+    color: #000;
+    background-color: orange;
+}
+
+.drawingArea button {
+    //position: absolute;
+    //z-index: 1;
+}
+
+#play {
+    position: relative;
+    float: left;
+}
