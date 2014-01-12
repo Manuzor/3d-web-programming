@@ -2,20 +2,33 @@
 <html>
   <head>
     <title>X3DOM - Perpetual Motion</title>
-    <link rel="stylesheet" href="http://www.x3dom.org/x3dom/example/x3dom.css">
-    <script src="http://www.x3dom.org/x3dom/example/x3dom.js"></script>
+    <link rel="stylesheet" href="http://x3dom.org/download/1.5.1/x3dom.css">
+    <script src="http://x3dom.org/download/1.5.1/x3dom.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="main.js"></script>
   </head>
   <body id="body">
     <div id="hideThis">
-      <h1 id="hideThis">Hello World</h1>
+      <p>
+        <p><b>3D Web Programming</b> assignment by Manuel Maier (mm198) using the <a href="http://www.x3dom.org/">X3DOM framework and runtime</a> version 1.5.1.</p>
+      </p>
       <button onClick="toggle_info_section('info')">Toggle Info</button>
       <div id="info" style="display: none;">
         <p>
-          Sources: Ball sound from <a href="http://www.freesound.org/people/volivieri/sounds/37154/">http://www.freesound.org/people/volivieri/sounds/37154/</a>
-          Football (Soccer ball) model and texture <a href="http://www.blendswap.com/blends/view/70393">http://www.blendswap.com/blends/view/70393</a>
-        </p>
+        Usage:
+        <ol>
+          <li>Click the ball to start the falling animation. Click it again to stop the animation.</li>
+          <li>Click any of the colored boxes to change the texture of the ball. <it>Note that this changes the actual texture and not just the material properties!</it></li>
+          <li>Default camera controls: Use the left mouse button to look around, the right mouse button of the mouse wheel to zoom, and the middle mouse button to pan.</li>
+        </ol>
+      </p>
+      <p>
+        Sources:
+        <ul>
+          <li>Football/soccer ball model and textures made by myself.</li>
+          <li>The source code brings ideas together from many tutorials found on the x3dom website. The main part however is written by myself.</li>
+        </ul>
+      </p>
       </div>
     </div>
     <div class="drawingArea">
