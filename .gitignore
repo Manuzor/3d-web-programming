@@ -1,2 +1,3 @@
 *.sublime-workspace
 /lib/x3dom/docs/*
+/documents/*
