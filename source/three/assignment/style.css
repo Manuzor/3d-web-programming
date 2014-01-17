@@ -1,0 +1,17 @@
+body {
+	overflow: hidden;
+	margin: 0;
+}
+
+#textHeader {
+	margin: 10px;
+	position: absolute;
+	top: 10px;
+	width: 100%;
+	z-index: 100;
+	display:block;
+}
+
+#textHeader p {
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
+}
