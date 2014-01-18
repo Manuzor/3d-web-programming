@@ -12,8 +12,135 @@ r2d2 = {
         //me.position = { x: 0, y: 0, z: 0 };
         scene.add(me);
         me.add(camera);
+        r2d2.instance = me;
+    },
+    move : {
+        forward : function () {
+            console.log("Forward");
+            r2d2.instance.position.z++;
+        },
+        backward : function () {
+            console.log("Backwards");
+            r2d2.instance.position.z--;
+        },
+        left : function () {
+            console.log("Turn left");
+        },
+        right : function () {
+            console.log("Turn right");
+        },
+    },
+    moving : {
+        forward : false,
+        backward : false,
+    },
+    turning : {
+        left : false,
+        right : false,
+    },
+    activate : function () {
+        console.log("Pick up!");
+    },
+    instance : null,
+    speed : { // always: units per second
+        turn : Math.PI / 2,
+        movement : 5,
+    },
+    update : function(elapsedSeconds)
+    {
+        if (r2d2.turning.left) {
+            r2d2.instance.rotateY(r2d2.speed.turn * elapsedSeconds);
+        };
+        if (r2d2.turning.right) {
+            r2d2.instance.rotateY(-r2d2.speed.turn * elapsedSeconds);
+        };
+        if (r2d2.moving.forward) {
+            r2d2.instance.position = r2d2.instance.localToWorld(new THREE.Vector3(0, 0, 1).multiplyScalar(r2d2.speed.movement * elapsedSeconds));
+        };
+        if (r2d2.moving.backward) {
+            r2d2.instance.position = r2d2.instance.localToWorld(new THREE.Vector3(0, 0, -1).multiplyScalar(r2d2.speed.movement * elapsedSeconds));
+        };
     }
 };
+
+floor = {
+    model : {
+        default : {
+            obj : "../../../assets/models/floor/floor.obj",
+            mtl : "../../../assets/models/floor/floor.mtl"
+        }
+    },
+    init : function(me) {
+        console.log("Loaded the floor");
+        scene.add(me);
+    }
+};
+
+input = {
+    keys : {
+        w : 87,
+        a : 65,
+        s : 83,
+        d : 68,
+        e : 69
+    },
+    onKeyPress : function (event) {
+        event.preventDefault();
+        console.log("Key press");
+    },
+    onKeyDown : function(event){
+        keyDown = event;
+
+        switch(event.which)
+        {
+            case input.keys.w:
+            r2d2.moving.forward = true;
+            break;
+            case input.keys.s:
+            r2d2.moving.backward = true;
+            break;
+            case input.keys.a:
+            r2d2.turning.left = true;
+            break;
+            case input.keys.d:
+            r2d2.turning.right = true;
+            break;
+            case input.keys.e:
+            r2d2.activate();
+            break;
+        }
+
+        if (event.which != 116) {
+            event.preventDefault();
+        };
+    },
+    onKeyUp : function(event){
+        keyDown = event;
+
+        switch(event.which)
+        {
+            case input.keys.w:
+            r2d2.moving.forward = false;
+            break;
+            case input.keys.s:
+            r2d2.moving.backward = false;
+            break;
+            case input.keys.a:
+            r2d2.turning.left = false;
+            break;
+            case input.keys.d:
+            r2d2.turning.right = false;
+            break;
+            case input.keys.e:
+            r2d2.activate();
+            break;
+        }
+
+        if (event.which != 116) {
+            event.preventDefault();
+        };
+    }
+}
 
 stats = null;
 scene = null;
@@ -44,6 +171,7 @@ function update (elapsedSeconds) {
         );
         currentColorTransitionStep += colorTransitionStepsPerSecond * elapsedSeconds;
     };
+    r2d2.update(elapsedSeconds);
 }
 
 function render () {
@@ -143,24 +271,24 @@ function init () {
 
     loader = new THREE.OBJMTLLoader();
     loader.load(r2d2.model.default.obj, r2d2.model.default.mtl, r2d2.init);
+    loader.load(floor.model.default.obj, floor.model.default.mtl, floor.init);
 
     var geometry = new THREE.CubeGeometry( 1, 1, 1 );
 
-    var material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
+    var material = new THREE.MeshBasicMaterial({ color: 0x777777 });
 
     mesh = new THREE.Mesh( geometry, material );
     scene.add( mesh );
 
-    startColorTransition(new THREE.Color(0x8123a1));
 
-    geometry = new THREE.CubeGeometry( 1, 1, 1 );
+    // Capture input
+    document.addEventListener( 'keypress', input.onKeyPress, false );
+    document.addEventListener( 'keydown', input.onKeyDown, false );
+    document.addEventListener( 'keyup', input.onKeyUp, false );
 
-    material = new THREE.MeshBasicMaterial( { color: 0x777777 } );
-
-    mesh2 = new THREE.Mesh( geometry, material );
-    mesh.add(mesh2);
     //scene.add( mesh2 );
 
+    //startColorTransition(new THREE.Color(0x8123a1));
     startColorTransition(new THREE.Color(0x764f33));
 
     console.log("<- init");
