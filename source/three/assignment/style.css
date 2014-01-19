@@ -13,5 +13,9 @@ body {
 }
 
 #textHeader p {
-	text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
+	text-shadow:
+		-1px  0px 5px black,
+		 0px  1px 5px black,
+		 1px  0px 5px black,
+		 0px -1px 5px black;
 }

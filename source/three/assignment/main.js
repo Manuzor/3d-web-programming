@@ -1,6 +1,7 @@
 // Objects
 
 r2d2 = {
+    minTriggerActivationDistance : 3,
     model : {
         default : {
             obj : "../../../assets/models/r2d2/r2d2.obj",
@@ -8,11 +9,14 @@ r2d2 = {
         }
     },
     init : function(me) {
-        console.log("Loaded the model!");
-        //me.position = { x: 0, y: 0, z: 0 };
+        console.log("Loaded r2d2.");
         scene.add(me);
         me.add(camera);
+        me.castShadow = true;
+        me.receiveShadow = true;
         r2d2.instance = me;
+
+        updateFramework.addListener(r2d2.update);
     },
     move : {
         forward : function () {
@@ -39,7 +43,39 @@ r2d2 = {
         right : false,
     },
     activate : function () {
-        console.log("Pick up!");
+        function getClosestTrigger () {
+            if (trigger.instances.length <= 0) {
+                return null;
+            };
+
+            var reference = r2d2.instance.position.clone();
+            reference.y = 2;
+            var closest = trigger.instances[0];
+            var closestDelta = new THREE.Vector3();
+            var candidate = new THREE.Vector3();
+
+            closestDelta.subVectors(closest.position, reference);
+            for (var i = 1; i < trigger.instances.length; i++) {
+                var trg = trigger.instances[i];
+                candidate.subVectors(trg.position, reference);
+                if (candidate.lengthSq() < closestDelta.lengthSq()) {
+                    closest = trg;
+                    closestDelta = candidate.clone();
+                };
+            };
+
+            return {trigger: closest, delta: closestDelta};
+        }
+
+        var closest = getClosestTrigger();
+        if (closest.trigger != null && trigger.active !== closest.trigger && closest.delta.length() <= r2d2.minTriggerActivationDistance) {
+            if (trigger.active != null) {
+                trigger.active.scale.set(trigger.targetScale, trigger.targetScale, trigger.targetScale);
+            };
+            trigger.active = closest.trigger;
+            trigger.active.scale.set(trigger.activeScale, trigger.activeScale, trigger.activeScale);
+            startColorTransition(closest.trigger.userData.color);
+        };
     },
     instance : null,
     speed : { // always: units per second
@@ -60,10 +96,56 @@ r2d2 = {
         if (r2d2.moving.backward) {
             r2d2.instance.position = r2d2.instance.localToWorld(new THREE.Vector3(0, 0, -1).multiplyScalar(r2d2.speed.movement * elapsedSeconds));
         };
+
+        if (r2d2.instance != null) {
+            var bounds = floor.getBounds();
+            r2d2.instance.position.clamp(bounds.min, bounds.max);
+        };
     }
 };
 
+trigger = {
+    instances : new Array(10), // The initial length tells how many are going to be generated initially.
+    growthRate : 0.5, // per second
+    initialScale : 0.1,
+    targetScale : 1.0,
+
+    active : null,
+    activeScale : 1.5,
+
+    // methods
+    create : function(grow){
+        grow = grow || true;
+
+        var colValue = Math.random() * 0xffffff;
+        var trg = new THREE.Mesh(
+                new THREE.CubeGeometry(2, 2, 2),
+                new THREE.MeshLambertMaterial({ color: colValue, transparent : true, opacity : 0.75 })
+            );
+        trg.castShadow = true;
+        trg.receiveShadow = true;
+        trg.userData.color = new THREE.Color(colValue);
+        trg.scale.set(trigger.initialScale, trigger.initialScale, trigger.initialScale);
+        trg.position.set(
+            Math.random() * 50 - 25,
+            Math.random() * 2 + 1,
+            Math.random() * 50 - 25
+            );
+        if (grow) {
+            updateFramework.addListener(function (elapsedSeconds) {
+                if (trg.scale.x >= trigger.targetScale) {
+                    return "remove";
+                };
+                trg.scale.addScalar(trigger.growthRate * elapsedSeconds);
+            });
+        };
+        return trg;
+    }
+}
+
 floor = {
+    instance : null,
+    scale : new THREE.Vector3(25, 1, 25),
     model : {
         default : {
             obj : "../../../assets/models/floor/floor.obj",
@@ -71,8 +153,27 @@ floor = {
         }
     },
     init : function(me) {
-        console.log("Loaded the floor");
+        console.log("Loaded the floor.");
+        me.receiveShadow = true;
+        me.scale = floor.scale;
         scene.add(me);
+        floor.instance = me;
+    },
+    getBounds : function () {
+        var max = floor.scale.clone();
+        var min = max.clone();
+        min.multiplyScalar(-1);
+        max.y = min.y = 0.0;
+
+        return new THREE.Box3(min, max);
+    },
+    getBoundsPairs : function () {
+        var bounds = floor.getBounds();
+        return [
+            [bounds.min.x, bounds.max.x],
+            [bounds.min.y, bounds.max.y],
+            [bounds.min.z, bounds.max.z]
+        ];
     }
 };
 
@@ -82,7 +183,21 @@ input = {
         a : 65,
         s : 83,
         d : 68,
-        e : 69
+        e : 69,
+        f : 70,
+        f1 : 112,
+        f2 : 113,
+        f3 : 114,
+        f4 : 115,
+        f5 : 116,
+        f6 : 117,
+        f7 : 118,
+        f8 : 119,
+        f9 : 120,
+        f10 : 121,
+        f11 : 122,
+        f12 : 123,
+        space : 32,
     },
     onKeyPress : function (event) {
         event.preventDefault();
@@ -105,12 +220,19 @@ input = {
             case input.keys.d:
             r2d2.turning.right = true;
             break;
-            case input.keys.e:
-            r2d2.activate();
+            case input.keys.space:
+            var trg = trigger.create();
+            trigger.instances.push(trg);
+            scene.add(trg);
+            break;
+            //Keys that are ignored on purpose:
+            case input.keys.e: break;
+            default:
+            console.log("Unhandled key down: " + event.which);
             break;
         }
 
-        if (event.which != 116) {
+        if (event.which < input.keys.f1 || event.which > input.keys.f12) {
             event.preventDefault();
         };
     },
@@ -134,6 +256,18 @@ input = {
             case input.keys.e:
             r2d2.activate();
             break;
+            case input.keys.f:
+            if (THREEx.FullScreen.activated()) {
+                THREEx.FullScreen.cancel();
+            } else {
+                THREEx.FullScreen.request();
+            };
+            break;
+            //Keys that are ignored on purpose:
+            case input.keys.space: break;
+            default:
+            console.log("Unhandled key up: " + event.which);
+            break;
         }
 
         if (event.which != 116) {
@@ -143,13 +277,17 @@ input = {
 }
 
 stats = null;
+
+sun = null;
 scene = null;
 renderer = null;
 camera = null;
+camControls = null;
+
 clock = null;
 loader = null;
 
-colorTransitionStepsPerSecond = 0.01
+colorTransitionStepsPerSecond = 0.01;
 currentColorTarget = null;
 currentColorTransitionStep = 1.0;
 
@@ -162,6 +300,41 @@ function mainloop () {
     render();
 }
 
+updateFramework = {
+    _inputBuffer : new Array(),
+    _callbacks : new Array(),
+    _indicesToRemove : new Array(),
+    addListener : function (callback) {
+        updateFramework._inputBuffer.push(callback);
+    },
+    update : function (elapsedSeconds) {
+        // Call all callbacks.
+        for (var i = 0; i < updateFramework._callbacks.length; i++) {
+            var result = updateFramework._callbacks[i](elapsedSeconds);
+            if (result == "remove") {
+                //TODO: implement me!
+                //updateFramework._indicesToRemove.push(i);
+            };
+        };
+        // Remove all callbacks that requested so.
+        for (var i = 0; i < updateFramework._indicesToRemove.length; i++) {
+            updateFramework._callbacks.splice(trigger._indicesToRemove[i], 1);
+        };
+        // Clear the list of removable indices.
+        if (updateFramework._indicesToRemove.length > 0) {
+            updateFramework._indicesToRemove = new Array();
+        };
+        // Put all callbacks of the input buffer in the list of callbacks...
+        for (var i = 0; i < updateFramework._inputBuffer.length; i++) {
+            updateFramework._callbacks.push(updateFramework._inputBuffer[i]);
+        };
+        // ... and clear the input buffer.
+        if (updateFramework._inputBuffer.length > 0) {
+            updateFramework._inputBuffer = new Array();
+        };
+    }
+}
+
 function update (elapsedSeconds) {
     //camera.position.z += 0.1;
     //controls.update(elapsedSeconds);
@@ -171,7 +344,7 @@ function update (elapsedSeconds) {
         );
         currentColorTransitionStep += colorTransitionStepsPerSecond * elapsedSeconds;
     };
-    r2d2.update(elapsedSeconds);
+    updateFramework.update(elapsedSeconds);
 }
 
 function render () {
@@ -190,13 +363,27 @@ THREE.Color.interpolate = function (startCol, endCol, step) {
     return result;
 }
 
+// @param col a THREE.Color instance.
 function startColorTransition (col) {
     currentColorTransitionStep = 0.0;
     currentColorTarget = col;
 }
 
 function init () {
+    initUtils = function () {
+        Math.clamp = function(value, min, max)
+        {
+            if (value < min) {
+                return min;
+            };
+            if (value > max) {
+                return max;
+            };
+            return value;
+        }
+    };
     console.log( "-> init" );
+    initUtils();
     if(Detector.webgl){
         renderer = new THREE.WebGLRenderer({
             antialias : true,
@@ -204,16 +391,30 @@ function init () {
             premultipliedAlpha : false,
             alpha : false
         });
+        renderer.shadowMapEnabled = true;
         renderer.setClearColor( 0x000000 );
 
     }else{
         renderer = new THREE.CanvasRenderer();
     }
-    // put a camera in the scene
-    camera = new THREE.PerspectiveCamera();
-    camera.position.set(0, 2.5, -3.5);
-    camera.rotateOnAxis(new THREE.Vector3(0,1,0), 3.14);
 
+    // set up camera and camera controls
+    camera = new THREE.PerspectiveCamera();
+
+    camControls = new THREE.OrbitControls(camera);
+    camControls.noKeys = true;
+    camControls.noPan = true;
+    camControls.center.set(0, 3, 0);
+    camControls.rotateUp(Math.PI / 2 + Math.PI / 16);
+    camControls.rotateLeft(Math.PI);
+    updateFramework.addListener(function (elapsedSeconds) {
+        camControls.update();
+    });
+
+    //camera.position.set(0, 2.5, -3.5);
+    //camera.rotateOnAxis(new THREE.Vector3(0,1,0), 3.14);
+
+    // Set a callback for when the window resizes.
     var windowResizedCallback = function () {
         renderer.setSize( window.innerWidth, window.innerHeight );
         var context = renderer.getContext();
@@ -235,61 +436,49 @@ function init () {
     stats.domElement.style.right = '0px';
     document.body.appendChild( stats.domElement );
 
-    // create a scene
     scene = new THREE.Scene();
-    //create fog
-    //scene.fog = new THREE.FogExp2( 0xC8C896, 0.0015 );
-    //create a new clock
     clock = new THREE.Clock();
 
-    //add first person controls
-    //controls = new THREE.FirstPersonControls( camera );
-    //controls.movementSpeed = 10;
-    //controls.lookSpeed = 0.05;
-    //controls.noFly = true;
-    //controls.lookVertical = true;
-
-    //THREEx.WindowResize.bind(renderer, camera);
-
-    if(THREEx.FullScreen.available()) {
-        THREEx.FullScreen.bindKey();
-    }
-
-    // create a point light
-    var pointLight = new THREE.PointLight(0xFFFFFF);
-
-    // set its position
-    pointLight.position.x = 0;
-    pointLight.position.y = 100;
-    pointLight.position.z = 0;
-
-    // add to the scene
-    scene.add(pointLight);
-
-    var ambientLight = new THREE.AmbientLight(0xFFFFFF);
-    scene.add(ambientLight);
+    sun = new THREE.DirectionalLight(0xffffff);
+    sun.position.set(100, 100, 100);
+    sun.castShadow = true;
+    scene.add(sun);
+    scene.add(new THREE.HemisphereLight(0x000000, 0xaaaaaa));
 
     loader = new THREE.OBJMTLLoader();
     loader.load(r2d2.model.default.obj, r2d2.model.default.mtl, r2d2.init);
     loader.load(floor.model.default.obj, floor.model.default.mtl, floor.init);
 
-    var geometry = new THREE.CubeGeometry( 1, 1, 1 );
-
-    var material = new THREE.MeshBasicMaterial({ color: 0x777777 });
-
-    mesh = new THREE.Mesh( geometry, material );
-    scene.add( mesh );
-
-
     // Capture input
-    document.addEventListener( 'keypress', input.onKeyPress, false );
-    document.addEventListener( 'keydown', input.onKeyDown, false );
-    document.addEventListener( 'keyup', input.onKeyUp, false );
+    document.addEventListener('keypress', input.onKeyPress, false);
+    document.addEventListener('keydown', input.onKeyDown, false);
+    document.addEventListener('keyup', input.onKeyUp, false);
 
-    //scene.add( mesh2 );
+    // Initial color transition: black -> random
+    var col = new THREE.Color(Math.random() * 0xffffff);
+    var hsl = col.getHSL();
+    // Make sure it's a brighter color so that the user will actually notice it.
+    col.setHSL(hsl.h, Math.clamp(hsl.s, 0.7, 1.0), Math.clamp(hsl.l, 0.7, 1.0));
+    startColorTransition(col);
 
-    //startColorTransition(new THREE.Color(0x8123a1));
-    startColorTransition(new THREE.Color(0x764f33));
+    // Set up shadows
+    renderer.shadowMapSoft = true;
+
+    renderer.shadowCameraNear = 3;
+    renderer.shadowCameraFar = camera.far;
+    renderer.shadowCameraFov = 50;
+
+    renderer.shadowMapBias = 0.0039;
+    renderer.shadowMapDarkness = 0.5;
+    renderer.shadowMapWidth = 1024;
+    renderer.shadowMapHeight = 1024;
+
+    //updateFramework.addListener(trigger.grow);
+
+    for (var i = 0; i < trigger.instances.length; i++) {
+        trigger.instances[i] = trigger.create();
+        scene.add(trigger.instances[i]);
+    };
 
     console.log("<- init");
 }
