@@ -1,7 +1,7 @@
 // Objects
 
 r2d2 = {
-    minTriggerActivationDistance : 3,
+    minTriggerActivationDistance : 2.8,
     model : {
         default : {
             obj : "../../../assets/models/r2d2/r2d2.obj",
@@ -14,6 +14,10 @@ r2d2 = {
         me.add(camera);
         me.castShadow = true;
         me.receiveShadow = true;
+        me.userData.color = new THREE.Color(0xffffff);
+        startColorTransition(me.userData.color);
+        setSpotlightTarget(me);
+        me.add(spotLight);
         r2d2.instance = me;
 
         updateFramework.addListener(r2d2.update);
@@ -66,15 +70,26 @@ r2d2 = {
 
             return {trigger: closest, delta: closestDelta};
         }
+        function unsetActiveTrigger () {
+            if (trigger.active == null) {
+                return;
+            };
+            trigger.active.scale.set(trigger.targetScale, trigger.targetScale, trigger.targetScale);
+            trigger.active = null;
+        }
 
         var closest = getClosestTrigger();
-        if (closest.trigger != null && trigger.active !== closest.trigger && closest.delta.length() <= r2d2.minTriggerActivationDistance) {
-            if (trigger.active != null) {
-                trigger.active.scale.set(trigger.targetScale, trigger.targetScale, trigger.targetScale);
-            };
+        if (closest.trigger != null && trigger.active !== closest.trigger && closest.delta.length() < r2d2.minTriggerActivationDistance) {
+            unsetActiveTrigger();
             trigger.active = closest.trigger;
             trigger.active.scale.set(trigger.activeScale, trigger.activeScale, trigger.activeScale);
             startColorTransition(closest.trigger.userData.color);
+            setSpotlightTarget(closest.trigger);
+
+        } else {
+            unsetActiveTrigger();
+            setSpotlightTarget(r2d2.instance);
+            startColorTransition(r2d2.instance.userData.color);
         };
     },
     instance : null,
@@ -279,6 +294,7 @@ input = {
 stats = null;
 
 sun = null;
+spotLight = null;
 scene = null;
 renderer = null;
 camera = null;
@@ -336,14 +352,6 @@ updateFramework = {
 }
 
 function update (elapsedSeconds) {
-    //camera.position.z += 0.1;
-    //controls.update(elapsedSeconds);
-    if ( currentColorTransitionStep < 1.0 ) {
-        renderer.setClearColor(
-            THREE.Color.interpolate(renderer.getClearColor(), currentColorTarget, currentColorTransitionStep)
-        );
-        currentColorTransitionStep += colorTransitionStepsPerSecond * elapsedSeconds;
-    };
     updateFramework.update(elapsedSeconds);
 }
 
@@ -367,6 +375,24 @@ THREE.Color.interpolate = function (startCol, endCol, step) {
 function startColorTransition (col) {
     currentColorTransitionStep = 0.0;
     currentColorTarget = col;
+}
+
+function updateColors (elapsedSeconds) {
+    if ( currentColorTransitionStep < 1.0 ) {
+        var newColor = THREE.Color.interpolate(renderer.getClearColor(), currentColorTarget, currentColorTransitionStep);
+        renderer.setClearColor(newColor);
+        //spotLight.color = newColor;
+        currentColorTransitionStep += colorTransitionStepsPerSecond * elapsedSeconds;
+    };
+}
+
+function setSpotlightTarget (target) {
+    target.add(spotLight);
+    spotLight.target = target;
+    spotLight.angle = 0.3;
+    if (target.userData.color) {
+        spotLight.color = target.userData.color;
+    };
 }
 
 function init () {
@@ -454,12 +480,10 @@ function init () {
     document.addEventListener('keydown', input.onKeyDown, false);
     document.addEventListener('keyup', input.onKeyUp, false);
 
-    // Initial color transition: black -> random
-    var col = new THREE.Color(Math.random() * 0xffffff);
-    var hsl = col.getHSL();
-    // Make sure it's a brighter color so that the user will actually notice it.
-    col.setHSL(hsl.h, Math.clamp(hsl.s, 0.7, 1.0), Math.clamp(hsl.l, 0.7, 1.0));
-    startColorTransition(col);
+    // Initial color transition: black -> white
+    //startColorTransition(new THREE.Color(0xffffff)); // this is done by r2d2 already
+    // register the color updater.
+    updateFramework.addListener(updateColors);
 
     // Set up shadows
     renderer.shadowMapSoft = true;
@@ -473,8 +497,20 @@ function init () {
     renderer.shadowMapWidth = 1024;
     renderer.shadowMapHeight = 1024;
 
+    spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.position.set( 0, 5, 0 );
+    spotLight.castShadow = true;
+    spotLight.shadowMapWidth = 1024;
+    spotLight.shadowMapHeight = 1024;
+    spotLight.shadowCameraNear = 500;
+    spotLight.shadowCameraFar = 4000;
+    spotLight.shadowCameraFov = 30;
+    spotLight.exponent = 0;
+    spotLight.angle = 0.1;
+    scene.add( spotLight );
     //updateFramework.addListener(trigger.grow);
 
+    // Add initial triggers.
     for (var i = 0; i < trigger.instances.length; i++) {
         trigger.instances[i] = trigger.create();
         scene.add(trigger.instances[i]);
