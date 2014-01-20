@@ -12,7 +12,21 @@ body {
 	display:block;
 }
 
-#textHeader p {
+ul {
+	list-style: none;
+}
+
+#textHeader p, li{
+	text-shadow:
+		-1px  0px 5px black,
+		 0px  1px 5px black,
+		 1px  0px 5px black,
+		 0px -1px 5px black;
+}
+
+#textHeader li:before {
+	content: '\2022';
+	padding: 10px;
 	text-shadow:
 		-1px  0px 5px black,
 		 0px  1px 5px black,
